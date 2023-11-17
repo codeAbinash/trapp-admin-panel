@@ -3,6 +3,13 @@
 @tailwind utilities;
 /* Inter font family */
 
+.gradient {
+  @apply bg-gradient-to-tr from-red-100 to-blue-100 dark:from-red-950/40 dark:to-blue-950/40;
+}
+.transparent {
+  @apply from-transparent to-transparent;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
