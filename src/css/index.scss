@@ -8,8 +8,8 @@
 // }
 
 @font-face {
-  font-family: "Jost";
-  src: url("/fonts/jost.woff2") format("woff2");
+  font-family: 'Jost';
+  src: url('/fonts/jost.woff2') format('woff2');
   font-weight: 1 1000;
   font-style: normal;
   font-display: swap;
@@ -20,7 +20,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Jost", sans-serif;
+  font-family: 'Jost', sans-serif;
 }
 
 // body {
