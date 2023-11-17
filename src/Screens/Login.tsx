@@ -15,7 +15,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export function TabsDemo() {
   return (
-    <Tabs defaultValue="creator" className="w-[450px] -mt-20">
+    <Tabs defaultValue="creator" className="max-w-[450px] w-[95%] -mt-20">
       <TabsList className="grid w-full grid-cols-2">
         <TabsTrigger value="creator">Creator</TabsTrigger>
         <TabsTrigger value="admin">Admin</TabsTrigger>
