@@ -45,7 +45,9 @@ function Creator() {
     <Card>
       <CardHeader>
         <CardTitle className='text-2xl'>
-          <span className='font-semibold'>Creator Login</span>
+          <span className='font-semibold'>
+            Creator Login <TextEmoji emoji='🎨' />
+          </span>
         </CardTitle>
         <CardDescription className='font-medium'>
           Hello! <TextEmoji emoji='👋' /> Please login with your email and password.
@@ -87,7 +89,7 @@ function Admin() {
       <CardHeader>
         <CardTitle className='text-2xl'>
           <span className='font-semibold'>
-            Admin Login <TextEmoji emoji='👨‍💻' />
+            Admin Login <TextEmoji emoji='😎' />
           </span>
         </CardTitle>
         <CardDescription className='font-medium'>
