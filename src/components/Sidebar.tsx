@@ -1,6 +1,8 @@
 import { NavigateFunction, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { Button } from './ui/button'
 
+import { LayoutDashboard, BarChartBig, AreaChart } from 'lucide-react'
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -113,37 +115,16 @@ function OptionItem({
   return (
     <button
       onClick={() => navigate(path)}
-      className={`flex items-center gap-3 rounded-md text-left ${
-        path === currentPath ? 'bg-[#eb3358] bg-opacity-10 ' : ''
-      }`}
+      className={`flex items-center gap-3 rounded-md text-left ${path === currentPath ? 'bg-main bg-opacity-10 ' : ''}`}
     >
-      {/* <img src={`AppIcons/${icon}.svg`} className='w-5' /> */}
-      {/* <img src='./ExtraIcons/das.svg' className='w-7 ' /> */}
-
-      {path === currentPath ? getSvg('#eb3358') : getSvg('#000000')}
-      <span className={`text-sm font-medium ${path === currentPath ? 'text-[#eb3358]' : ''} `}>{name}</span>
-    </button>
-  )
-}
-
-function getSvg(color: string) {
-  return (
-    <>
-      <svg
-        width='64'
-        height='64'
-        viewBox='0 0 24 24'
-        xmlns='http://www.w3.org/2000/svg'
-        className='w-7 border border-black'
+      <div
+        className={`flex items-center justify-between gap-3 p-3 px-4 text-sm font-medium ${
+          path === currentPath ? 'text-[#eb3358]' : ''
+        } `}
       >
-        <path fill={color} d='M6 23H2a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1Z' opacity='.25' />
-        <path fill={color} d='M14 23h-4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v20a1 1 0 0 1-1 1Z' />
-        <path
-          fill={color}
-          d='M22 23h-4a1 1 0 0 1-1-1V10a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1Z'
-          opacity='.5'
-        />
-      </svg>
-    </>
+        <BarChartBig className='h-6' />
+        <span>{name}</span>
+      </div>
+    </button>
   )
 }
