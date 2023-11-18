@@ -5,29 +5,28 @@ const API_URL = app.api
 
 const API = {
   admin: {
-    send_otp_login: `${API_URL}/auth/login`,
+    login: `${API_URL}/auth/login`,
   },
 }
-
 type defaultHeaders = {
   'Content-Type': 'application/json'
   Accept: 'application/json'
-  secret?: string
 }
 export const defaultHeaders: defaultHeaders = {
   'Content-Type': 'application/json',
   Accept: 'application/json',
-  //   secret: app.secret,
 }
 
 type formDataHeaders = {
   ContentType: 'multipart/form-data'
   Accept: 'application/json'
+  accept: 'application/json'
   //   secret: string
 }
 export const formDataHeaders: formDataHeaders = {
   //   secret: app.secret,
   Accept: 'application/json',
+  accept: 'application/json',
   ContentType: 'multipart/form-data',
 }
 
@@ -69,10 +68,7 @@ function catchError(err: any): apiResponse {
 export async function login_f(email: string, password: string): Promise<apiResponse> {
   try {
     const body = { email, password }
-    console.log(API.admin.send_otp_login)
-    console.log(body)
-    console.log(defaultHeaders)
-    const res = await fetch(API.admin.send_otp_login, {
+    const res = await fetch(API.admin.login, {
       method: 'POST',
       headers: defaultHeaders,
       body: JSON.stringify(body),

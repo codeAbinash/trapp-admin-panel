@@ -6,8 +6,10 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { usePopupAlertContext } from '@/context/PopupAlertContext'
-import { login_f } from '@/lib/api'
+import API, { login_f } from '@/lib/api'
+import ls from '@/lib/ls'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export function TabsDemo() {
   return (
@@ -91,20 +93,18 @@ function Admin() {
   const [password, setPassword] = useState('12345654')
   const [isLoading, setIsLoading] = useState(false)
   const { newPopup } = usePopupAlertContext()
+  const navigate = useNavigate()
 
   async function handelSubmit() {
     const email_f = email.trim()
     const password_f = password.trim()
     if (!email_f || !password_f) return newPopup({ title: 'Error', subTitle: 'Please fill all the fields' })
-
     setIsLoading(true)
-    const res = await login_f(email, password)
+    const res = await login_f(email_f, password_f)
     setIsLoading(false)
-    console.log(res)
-
-    if (!res.status) {
-      newPopup({ title: 'Error', subTitle: res.message })
-    }
+    if (!res.status) return newPopup({ title: 'Error', subTitle: res.message })
+    ls.set('token', 'Bearer ' + res.data.token)
+    navigate('/dashboard')
   }
 
   return (

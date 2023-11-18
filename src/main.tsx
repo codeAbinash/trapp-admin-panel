@@ -7,8 +7,9 @@ import './css/index.scss'
 import { ThemeProvider } from '@/components/theme-provider'
 import Home from './Screens/Home.tsx'
 import Login from './Screens/Login.tsx'
-import { PopupAlertContextProvider } from './context/PopupAlertContext.tsx'
 import PopupAlert from './components/PopupAlert.tsx'
+import { PopupAlertContextProvider } from './context/PopupAlertContext.tsx'
+import Dashboard from './Screens/Dashboard.tsx'
 
 const router = createBrowserRouter([
   {
@@ -17,7 +18,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/dashboard',
-        element: <div>dashboard</div>,
+        element: <Dashboard />,
       },
       {
         path: '/about',
@@ -29,6 +30,7 @@ const router = createBrowserRouter([
       },
     ],
   },
+  { path: '/admin', element: <div>admin</div> },
   {
     path: '/login',
     element: <Login />,
