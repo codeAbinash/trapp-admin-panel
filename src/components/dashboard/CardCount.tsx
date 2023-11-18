@@ -8,7 +8,7 @@ export default function CardCount({
   icon?: string
 }) {
   return (
-    <div className='flex h-28 w-[100%] items-center gap-4 rounded-2xl bg-white/5 p-5 sm:w-[48%] lg:w-[23%]'>
+    <div className='flex h-28 w-[100%] items-center gap-4 rounded-2xl bg-black/5 p-5 dark:bg-white/5 sm:w-[48%] lg:w-[23%] '>
       <div>
         <img src={icon} alt='' className='h-16' />
       </div>

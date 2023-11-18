@@ -1,4 +1,4 @@
-import CardCount from '@/components/ui/CardCount'
+import CardCount from '@/components/dashboard/CardCount'
 import React from 'react'
 
 function Dashboard() {
