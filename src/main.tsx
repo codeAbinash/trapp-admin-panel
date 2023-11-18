@@ -21,12 +21,24 @@ const router = createBrowserRouter([
         element: <Dashboard />,
       },
       {
-        path: '/about',
-        element: <div>about</div>,
+        path: '/creators',
+        element: <div>Creators</div>,
       },
       {
-        path: '/contact',
-        element: <div>contact</div>,
+        path: '/users',
+        element: <div>Users</div>,
+      },
+      {
+        path: '/videos',
+        element: <div>Videos</div>,
+      },
+      {
+        path: '/price_management',
+        element: <div>Price Management</div>,
+      },
+      {
+        path: '/creator_withdraw',
+        element: <div>Creator Withdraw</div>,
       },
     ],
   },

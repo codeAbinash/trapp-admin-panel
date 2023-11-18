@@ -1,7 +1,17 @@
 import { NavigateFunction, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { Button } from './ui/button'
 
-import { LayoutDashboard, BarChartBig, AreaChart } from 'lucide-react'
+import {
+  LayoutDashboard,
+  BarChartBig,
+  AreaChart,
+  LucideIcon,
+  Brush,
+  User2,
+  Video,
+  Gem,
+  BadgePercent,
+} from 'lucide-react'
 
 import {
   AlertDialog,
@@ -42,10 +52,10 @@ export function UserCard() {
   return (
     <div className='flex w-full items-center gap-4 rounded-xl bg-black/[0.05] p-4 px-5 dark:bg-white/5'>
       <img
-        src='https://scontent.frdp1-1.fna.fbcdn.net/v/t39.30808-1/399198331_2040878432947245_8411816941336063901_n.jpg?stp=c14.92.172.172a_dst-jpg_p200x200&_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=G8UwK8GIBuEAX8Qfp6v&_nc_ht=scontent.frdp1-1.fna&oh=00_AfDP468ZTTJOig9Qg5TeK0Iq6m3KYR5GjrvOA1CDDRBJsA&oe=655D227E'
+        src='https://trappmartialarts.com/storage/users/profiles/Uv5GaHWh3aQ3fe0j9Z30TDCab8NQd06Nq3MW9r3w.jpg'
         className='w-10 rounded-full'
       />
-      <p className='text-sm font-semibold'>Sudipto Bain</p>
+      <p className='text-sm font-semibold'>Abinash Karmakar</p>
     </div>
   )
 }
@@ -95,9 +105,24 @@ export default function Sidebar({ show, setShow }: { show: boolean; setShow: Fun
 function Options({ path, navigate }: { path: string; navigate: NavigateFunction }) {
   return (
     <div className='flex flex-col gap-2'>
-      <OptionItem navigate={navigate} path='/dashboard' currentPath={path} name='Dashboard' icon='home' />
-      <OptionItem navigate={navigate} path='/about' currentPath={path} name='About' icon='info' />
-      <OptionItem navigate={navigate} path='/contact' currentPath={path} name='Contact' icon='phone' />
+      <OptionItem navigate={navigate} path='/dashboard' currentPath={path} name='Dashboard' SideIcon={BarChartBig} />
+      <OptionItem navigate={navigate} path='/creators' currentPath={path} name='Creators' SideIcon={Brush} />
+      <OptionItem navigate={navigate} path='/users' currentPath={path} name='Users' SideIcon={User2} />
+      <OptionItem navigate={navigate} path='/videos' currentPath={path} name='Videos' SideIcon={Video} />
+      <OptionItem
+        navigate={navigate}
+        path='/price_management'
+        currentPath={path}
+        name='Price Management'
+        SideIcon={Gem}
+      />
+      <OptionItem
+        navigate={navigate}
+        path='/creator_withdraw'
+        currentPath={path}
+        name='Creator Withdraw'
+        SideIcon={BadgePercent}
+      />
     </div>
   )
 }
@@ -106,26 +131,28 @@ function OptionItem({
   path,
   currentPath,
   name,
-  icon,
+  SideIcon = AreaChart,
   navigate,
 }: {
   path: string
   currentPath: string
   name: string
-  icon: string
+  SideIcon?: LucideIcon
   navigate: NavigateFunction
 }) {
   return (
     <button
       onClick={() => navigate(path)}
-      className={`flex items-center gap-3 rounded-md text-left ${path === currentPath ? 'bg-main bg-opacity-10 ' : ''}`}
+      className={`flex items-center gap-3 rounded-md text-left ${
+        path === currentPath ? 'bg-main bg-opacity-10' : 'hover:bg-black/[0.05] dark:hover:bg-white/5'
+      }`}
     >
       <div
         className={`flex items-center justify-between gap-3 p-3 px-4 text-sm font-medium ${
-          path === currentPath ? 'text-[#eb3358]' : ''
+          path === currentPath ? 'text-main' : 'text-neutral-700 dark:text-neutral-300'
         } `}
       >
-        <BarChartBig className='h-6' />
+        <SideIcon className='h-[1.35rem]' />
         <span>{name}</span>
       </div>
     </button>
