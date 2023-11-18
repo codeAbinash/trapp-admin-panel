@@ -64,7 +64,7 @@ export default function Sidebar({ show, setShow }: { show: boolean; setShow: Fun
         ease-in-out dark:bg-black xl:bg-transparent xl:dark:bg-transparent`}
       >
         <div className='flex h-full flex-col justify-between gap-3 p-5' onClick={() => setShow(false)}>
-          <div>
+          <div className='flex flex-col gap-5'>
             <img src='AppIcons/full.svg' className='w-24 p-3' />
             <UserCard />
             <Options path={location.pathname} navigate={navigate} />
@@ -111,15 +111,39 @@ function OptionItem({
   navigate: NavigateFunction
 }) {
   return (
-    <Button
-      variant='outline'
-      className={`flex w-full items-center gap-2 ${
-        path === currentPath ? 'bg-black bg-opacity-10 dark:bg-white/10' : ''
-      }`}
+    <button
       onClick={() => navigate(path)}
+      className={`flex items-center gap-3 rounded-md text-left ${
+        path === currentPath ? 'bg-[#eb3358] bg-opacity-10 ' : ''
+      }`}
     >
-      <span className='text-xl'></span>
-      <span className='text-lg'>{name}</span>
-    </Button>
+      {/* <img src={`AppIcons/${icon}.svg`} className='w-5' /> */}
+      {/* <img src='./ExtraIcons/das.svg' className='w-7 ' /> */}
+
+      {path === currentPath ? getSvg('#eb3358') : getSvg('#000000')}
+      <span className={`text-sm font-medium ${path === currentPath ? 'text-[#eb3358]' : ''} `}>{name}</span>
+    </button>
+  )
+}
+
+function getSvg(color: string) {
+  return (
+    <>
+      <svg
+        width='64'
+        height='64'
+        viewBox='0 0 24 24'
+        xmlns='http://www.w3.org/2000/svg'
+        className='w-7 border border-black'
+      >
+        <path fill={color} d='M6 23H2a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1Z' opacity='.25' />
+        <path fill={color} d='M14 23h-4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v20a1 1 0 0 1-1 1Z' />
+        <path
+          fill={color}
+          d='M22 23h-4a1 1 0 0 1-1-1V10a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1Z'
+          opacity='.5'
+        />
+      </svg>
+    </>
   )
 }
