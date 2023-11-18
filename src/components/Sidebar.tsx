@@ -41,8 +41,11 @@ export function AlertDialogDemo() {
 export function UserCard() {
   return (
     <div className='flex w-full items-center gap-4 rounded-xl bg-black/[0.05] p-4 px-5 dark:bg-white/5'>
-      <img src='https://github.com/shadcn.png' className='w-10 rounded-full' />
-      <p className='text-sm font-semibold'>Abinash Karmakar</p>
+      <img
+        src='https://scontent.frdp1-1.fna.fbcdn.net/v/t39.30808-1/399198331_2040878432947245_8411816941336063901_n.jpg?stp=c14.92.172.172a_dst-jpg_p200x200&_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=G8UwK8GIBuEAX8Qfp6v&_nc_ht=scontent.frdp1-1.fna&oh=00_AfDP468ZTTJOig9Qg5TeK0Iq6m3KYR5GjrvOA1CDDRBJsA&oe=655D227E'
+        className='w-10 rounded-full'
+      />
+      <p className='text-sm font-semibold'>Sudipto Bain</p>
     </div>
   )
 }
