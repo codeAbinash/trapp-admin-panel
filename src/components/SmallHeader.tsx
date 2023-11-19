@@ -1,26 +1,20 @@
 import { UserProfile } from '@/lib/types.ts'
-import { ModeToggle } from './mode-toggle.tsx'
-import { BarChart, BarChartBig, DollarSign, Keyboard, LogOut, Menu, Settings, User } from 'lucide-react'
-import { useNavigate } from 'react-router-dom'
-import TapMotion from './TapMotion.tsx'
+import { BarChartBig, Keyboard, LogOut, Menu, Settings, User } from 'lucide-react'
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { ModeToggle } from './mode-toggle.tsx'
+import TapMotion from './TapMotion.tsx'
 
-import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuPortal,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import Profile from '@/Redux/profile.ts'
+import store from '@/Redux/store.ts'
 
 export function DropdownMenuDemo({ userProfile }: { userProfile: UserProfile }) {
   const navigate = useNavigate()
@@ -74,9 +68,9 @@ export function DropdownMenuDemo({ userProfile }: { userProfile: UserProfile }) 
   )
 }
 
-export default function SmallHeader({ setShow }: { setShow: Function }) {
+export default function SmallHeader({ setShow }: { setShow: React.Dispatch<React.SetStateAction<boolean>> }) {
   const navigate = useNavigate()
-  const userProfile: UserProfile = useSelector((state: any) => state.profile)
+  const userProfile: UserProfile = useSelector((state: ReturnType<typeof store.getState>) => state.profile)
   return (
     <div className='flex w-full items-center justify-between p-3.5 xl:px-8'>
       <div>

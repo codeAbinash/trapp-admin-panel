@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { usePopupAlertContext } from '@/context/PopupAlertContext'
-import API, { login_f } from '@/lib/api'
+import { login_f } from '@/lib/api'
 import ls from '@/lib/ls'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -85,9 +85,9 @@ function Creator() {
   )
 }
 
-function onchange(val: any) {
-  console.log(val)
-}
+// function onchange(val: any) {
+//   console.log(val)
+// }
 
 function Admin() {
   const [email, setEmail] = useState('hello@gmail.com')

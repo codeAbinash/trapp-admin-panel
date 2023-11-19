@@ -5,7 +5,12 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function increaseCount(count: number, setCount: Function, delay: number = 50, increaseBy: number = Math.floor(count / 20)) {
+export function increaseCount(
+  count: number,
+  setCount: React.Dispatch<React.SetStateAction<number>>,
+  delay: number = 50,
+  increaseBy: number = Math.floor(count / 20),
+) {
   // increase delay 100ms for 3 seconds
   let i = 0
   increaseBy = Math.floor(count / 20)
@@ -19,11 +24,35 @@ export function increaseCount(count: number, setCount: Function, delay: number =
     })
     i++
     if (i === 20) clearInterval(interval)
-  }, 50)
+  }, delay)
 }
 
-export function delayFn(callback: Function, time = 150) {
+export function delayFn(callback: () => void, time = 150) {
   return function () {
     setTimeout(callback, time)
+  }
+}
+
+export function getStatusColor(status: string) {
+  switch (status) {
+    case 'banned':
+      return 'bg-red-500'
+    case 'regular':
+      return 'bg-green-500'
+    default:
+      return 'bg-transparent'
+  }
+}
+
+export function getSubscriptionColor(subscription: string) {
+  switch (subscription) {
+    case 'expired':
+      return 'bg-gray-500'
+    case 'active':
+      return 'bg-green-500'
+    case 'trial':
+      return 'bg-yellow-500'
+    default:
+      return 'bg-transparent'
   }
 }

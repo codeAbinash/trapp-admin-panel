@@ -1,16 +1,10 @@
-import TextEmoji from '@/components/TextEmoji'
 import { get_counts_f } from '@/lib/api'
 import { DashboardCounts } from '@/lib/types'
 import { increaseCount } from '@/lib/utils'
 import { useCallback, useEffect, useState } from 'react'
-import { flushSync } from 'react-dom'
 
 function Dashboard() {
-  return (
-    <>
-      <Cards />
-    </>
-  )
+  return <Cards />
 }
 
 function Cards() {
@@ -27,11 +21,11 @@ function Cards() {
     increaseCount(data?.live || 0, setCountLive)
     increaseCount(data?.users || 0, setCountUsers)
     increaseCount(data?.videos || 0, setCountVideos)
-  }, [])
+  }, [setCountCreators, setCountLive, setCountUsers, setCountVideos])
 
   useEffect(() => {
     loadCounts()
-  }, [])
+  }, [loadCounts])
 
   return (
     <div className='space-y-4 px-2'>

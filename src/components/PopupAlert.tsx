@@ -14,7 +14,13 @@ export default function PopupAlert() {
 
   // Disable back button
   useEffect(() => {
-    const disableBackButton = (e: any) => {
+    const disableBackButton = (
+      e: PopStateEvent & {
+        stopImmediatePropagation: () => void
+        preventDefault: () => void
+        stopPropagation: () => void
+      },
+    ) => {
       e.preventDefault()
       e.stopPropagation()
     }
@@ -62,80 +68,3 @@ export default function PopupAlert() {
     </div>
   )
 }
-
-// import {
-//   AlertDialog,
-//   AlertDialogAction,
-//   AlertDialogCancel,
-//   AlertDialogContent,
-//   AlertDialogDescription,
-//   AlertDialogFooter,
-//   AlertDialogHeader,
-//   AlertDialogTitle,
-//   AlertDialogTrigger,
-// } from '@/components/ui/alert-dialog'
-// import { Button } from '@/components/ui/button'
-
-// export default function AlertDialogDemo() {
-//   const { popups, setPopups } = usePopupAlertContext()
-//   useEffect(() => {
-//     if (popups.length) document.body.style.overflow = 'hidden'
-//     return () => {
-//       document.body.style.overflow = 'auto'
-//     }
-//   }, [popups])
-
-//   // Disable back button
-//   useEffect(() => {
-//     const disableBackButton = (e: any) => {
-//       e.preventDefault()
-//       e.stopPropagation()
-//     }
-//     window.addEventListener('popstate', disableBackButton)
-//     return () => {
-//       window.removeEventListener('popstate', disableBackButton)
-//     }
-//   }, [popups])
-
-//   // Remove the last popup
-//   const removePopup = useCallback(() => {
-//     const old = [...popups]
-//     old.pop()
-//     setPopups(old)
-//   }, [popups])
-
-//   const popup = popups[popups.length - 1]
-
-//   if (!popups.length) return null
-//   return (
-//     <AlertDialog>
-//       <AlertDialogTrigger asChild>{/* <Button variant='outline'>{popup.title}</Button> */}</AlertDialogTrigger>
-//       <AlertDialogContent>
-//         <AlertDialogHeader>
-//           <AlertDialogTitle>{popup.title}</AlertDialogTitle>
-//           <AlertDialogDescription>{popup.subTitle}</AlertDialogDescription>
-//         </AlertDialogHeader>
-//         <AlertDialogFooter>
-//           <AlertDialogCancel>Cancel</AlertDialogCancel>
-//           <AlertDialogAction>Continue</AlertDialogAction>
-//           <div className='flex items-center justify-between gap-3.5 p-4 text-[0.8rem]'>
-//             {popup.action?.map((action, index) => (
-//               <button
-//                 key={index}
-//                 className={
-//                   action.className + ' highlight-none tap97 font-normMid w-full flex-grow rounded-lg bg-white/5 py-3.5'
-//                 }
-//                 onClick={() => {
-//                   transitions(removePopup, 0)()
-//                   action.onClick && action.onClick()
-//                 }}
-//               >
-//                 {action.text}
-//               </button>
-//             ))}
-//           </div>
-//         </AlertDialogFooter>
-//       </AlertDialogContent>
-//     </AlertDialog>
-//   )
-// }

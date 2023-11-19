@@ -18,6 +18,7 @@ import {
 import ls from '@/lib/ls'
 import { UserProfile } from '@/lib/types'
 import { DEFAULT_PP } from '@/constants'
+import store from '@/Redux/store'
 
 export function LogoutPopupButton() {
   const navigate = useNavigate()
@@ -51,19 +52,16 @@ export function LogoutPopupButton() {
 
 export function UserCard() {
   const navigate = useNavigate()
-  const userProfile: UserProfile = useSelector((state: any) => state.profile)
+  const userProfile: UserProfile = useSelector((state: ReturnType<typeof store.getState>) => state.profile)
   return (
     <div className='halka-bg tap97 flex w-full cursor-pointer items-center gap-4 rounded-xl p-4 px-5' onClick={() => navigate('/edit_profile')}>
-      <img
-        src={userProfile?.profile_pic ?? DEFAULT_PP}
-        className='h-10 w-10 rounded-full'
-      />
+      <img src={userProfile?.profile_pic ?? DEFAULT_PP} className='h-10 w-10 rounded-full' />
       <p className='text-sm font-semibold'>{userProfile?.name || 'Loading...'}</p>
     </div>
   )
 }
 
-export default function Sidebar({ show, setShow }: { show: boolean; setShow: Function }) {
+export default function Sidebar({ show, setShow }: { show: boolean; setShow: React.Dispatch<React.SetStateAction<boolean>> }) {
   const navigate = useNavigate()
   const location = useLocation()
   // console.log(location.pathname)

@@ -2,8 +2,8 @@ import emoji from 'emoji-store'
 
 export function parseEmoji(emoji: string) {
   if (!emoji) return ['']
-  // @ts-ignore
-  let emojis = [...new Intl.Segmenter().segment(emoji)].map((x) => x.segment)
+  //@ts-expect-error - Intl.Segmenter() may not be available in all browsers
+  const emojis = [...new Intl.Segmenter().segment(emoji)].map((x) => x.segment)
   return emojis
 }
 export default function TextEmoji({ emoji: e = '😍' }) {

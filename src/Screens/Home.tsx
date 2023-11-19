@@ -22,7 +22,7 @@ export default function Home() {
 
   useEffect(() => {
     loadProfile()
-  }, [])
+  }, [loadProfile])
   useEffect(() => {
     if (!ls.get('token')) navigate('/login')
   })

@@ -68,7 +68,7 @@ async function updateLocalUserData() {
   }
 }
 function ChangePassword() {
-  const userProfile: UserProfile = useSelector((state: any) => state.profile)
+  const userProfile: UserProfile = useSelector((state: ReturnType<typeof store.getState>) => state.profile)
   const [name, setName] = useState(userProfile?.name || '')
   const [email, setEmail] = useState(userProfile?.email || '')
   const [profilePicture, setProfilePicture] = useState(userProfile?.profile_pic || '')
@@ -78,12 +78,15 @@ function ChangePassword() {
   const { newPopup } = usePopupAlertContext()
   const pp = useRef<HTMLInputElement>(null)
 
-  const onChangeFileSelect = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    const fileInput = e.target.files
-    const ppValidation = profilePicFileValidation(fileInput![0])
-    if (ppValidation.error) return newPopup({ title: 'Invalid File', subTitle: ppValidation.message })
-    setProfilePicture(URL.createObjectURL(fileInput![0]))
-  }, [])
+  const onChangeFileSelect = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const fileInput = e.target.files
+      const ppValidation = profilePicFileValidation(fileInput![0])
+      if (ppValidation.error) return newPopup({ title: 'Invalid File', subTitle: ppValidation.message })
+      setProfilePicture(URL.createObjectURL(fileInput![0]))
+    },
+    [setProfilePicture, newPopup],
+  )
 
   const handelSubmit = useCallback(
     transitions(async () => {
@@ -149,7 +152,7 @@ function ChangePassword() {
 
   useEffect(() => {
     loadProfile()
-  }, [])
+  }, [loadProfile])
 
   if (!userProfile) return <Loading text='Loading Profile...' />
 

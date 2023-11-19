@@ -3,16 +3,6 @@ import ls from './ls'
 
 const API_URL = app.api
 
-const API = {
-  login: `${API_URL}/auth/login`,
-  admin: {
-    get_profile: `${API_URL}/profile/get_profile`,
-    update_profile: `${API_URL}/profile/edit_profile`,
-  },
-  dashboard: {
-    get_counts: `${API_URL}/dashboard/get_counts`,
-  },
-}
 type defaultHeaders = {
   'Content-Type': 'application/json'
   Accept: 'application/json'
@@ -45,8 +35,6 @@ export type apiResponse = {
   data?: any
 }
 
-export default API
-
 type errors = {
   [key: string]: string[]
 }
@@ -72,7 +60,83 @@ function catchError(err: any): apiResponse {
   return { status: false, message: 'Network Error' }
 }
 
+const API = {
+  login: `${API_URL}/auth/login`,
+  admin: {
+    get_profile: `${API_URL}/profile/get_profile`,
+    update_profile: `${API_URL}/profile/edit_profile`,
+  },
+  dashboard: {
+    get_counts: `${API_URL}/dashboard/get_counts`,
+  },
+  users: {
+    get: `${API_URL}/user/get_users/all`,
+    ban: `${API_URL}/user/ban_user`,
+    delete: `${API_URL}/user/delete_user`,
+  },
+}
+export default API
+
 // All API calls
+
+export async function delete_user_f(user_id: number): Promise<apiResponse> {
+  try {
+    const headers = authorizedHeader(defaultHeaders)
+    const body = { user_id }
+    console.log(body)
+    const res = await fetch(API.users.delete, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(body),
+    })
+    return await returnResponse(res)
+  } catch (err) {
+    return catchError(err)
+  }
+}
+
+export async function ban_user_f(user_id: number, reasons: string): Promise<apiResponse> {
+  try {
+    const headers = authorizedHeader(defaultHeaders)
+    const body = { user_id, reasons }
+    console.log(body)
+    const res = await fetch(API.users.ban, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(body),
+    })
+    return await returnResponse(res)
+  } catch (err) {
+    return catchError(err)
+  }
+}
+
+// export async function update_profile_f(body: any): Promise<apiResponse> {
+//   try {
+//     const headers = authorizedHeader(defaultHeaders)
+//     const res = await fetch(API.admin.update_profile, {
+//       method: 'POST',
+//       headers,
+//       body: JSON.stringify(body),
+//     })
+//     return await returnResponse(res)
+//   } catch (err) {
+//     return catchError(err)
+//   }
+// }
+
+export async function get_users_f(url: string): Promise<apiResponse> {
+  try {
+    const headers = authorizedHeader(defaultHeaders)
+    const res = await fetch(url, {
+      method: 'POST',
+      headers,
+    })
+    return await returnResponse(res)
+  } catch (err) {
+    return catchError(err)
+  }
+}
 
 export async function get_counts_f(): Promise<apiResponse> {
   try {
