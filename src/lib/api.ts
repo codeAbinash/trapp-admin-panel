@@ -6,6 +6,12 @@ const API_URL = app.api
 const API = {
   admin: {
     login: `${API_URL}/auth/login`,
+    user: {
+      get_profile: `${API_URL}/profile/get_profile`,
+    },
+    dashboard: {
+      get_counts: `${API_URL}/dashboard/get_counts`,
+    },
   },
 }
 type defaultHeaders = {
@@ -54,7 +60,11 @@ export function getError(errors: errors) {
 async function returnResponse(res: any): Promise<apiResponse> {
   const data = await res.json()
   if (data.status === true) return { status: true, message: data.message, data: data }
-  else if (!data.errors) return { status: false, message: data.message || 'Network Error' }
+  else if (data.message === 'Unauthenticated.') {
+    ls.clear()
+    window.location.href = ''
+    return { status: false, message: data.message || 'Network Error' }
+  } else if (!data.errors) return { status: false, message: data.message || 'Network Error' }
   return { status: false, message: getError(data.errors) || data.message || 'Network Error' }
 }
 
@@ -64,6 +74,32 @@ function catchError(err: any): apiResponse {
 }
 
 // All API calls
+
+export async function get_counts_f(): Promise<apiResponse> {
+  try {
+    const headers = authorizedHeader(defaultHeaders)
+    const res = await fetch(API.admin.dashboard.get_counts, {
+      method: 'POST',
+      headers,
+    })
+    return await returnResponse(res)
+  } catch (err) {
+    return catchError(err)
+  }
+}
+
+export async function get_profile_f(): Promise<apiResponse> {
+  try {
+    const headers = authorizedHeader(defaultHeaders)
+    const res = await fetch(API.admin.user.get_profile, {
+      method: 'POST',
+      headers,
+    })
+    return await returnResponse(res)
+  } catch (err) {
+    return catchError(err)
+  }
+}
 
 export async function login_f(email: string, password: string): Promise<apiResponse> {
   try {

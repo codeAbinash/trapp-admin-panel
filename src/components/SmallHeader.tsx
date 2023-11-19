@@ -1,7 +1,11 @@
+import { UserProfile } from '@/lib/types.ts'
 import { ModeToggle } from './mode-toggle.tsx'
 import { Menu } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
+import TapMotion from './TapMotion.tsx'
 
-export default function SmallHeader({ setShow }: { setShow: Function }) {
+export default function SmallHeader({ setShow, userProfile }: { setShow: Function; userProfile: UserProfile }) {
+  const navigate = useNavigate()
   return (
     <div className='flex w-full items-center justify-between p-3.5 xl:px-8'>
       <div>
@@ -9,7 +13,13 @@ export default function SmallHeader({ setShow }: { setShow: Function }) {
       </div>
       <div className='flex gap-3.5'>
         <ModeToggle />
-        <img src='https://github.com/shadcn.png' className='aspect-square h-9 w-9 rounded-full' />
+        <TapMotion size='md'>
+          <img
+            src={userProfile?.profile_pic}
+            className='aspect-square h-9 w-9 cursor-pointer rounded-full'
+            onClick={() => navigate('/edit_profile')}
+          />
+        </TapMotion>
       </div>
     </div>
   )

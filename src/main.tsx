@@ -10,12 +10,17 @@ import Login from './Screens/Login.tsx'
 import PopupAlert from './components/PopupAlert.tsx'
 import { PopupAlertContextProvider } from './context/PopupAlertContext.tsx'
 import Dashboard from './Screens/Dashboard.tsx'
+import EditProfile from './Screens/EditProfile/EditProfile.tsx'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Home />,
     children: [
+      {
+        path: '/',
+        element: <Dashboard />,
+      },
       {
         path: '/dashboard',
         element: <Dashboard />,
@@ -40,9 +45,12 @@ const router = createBrowserRouter([
         path: '/creator_withdraw',
         element: <div>Creator Withdraw</div>,
       },
+      {
+        path: '/edit_profile',
+        element: <EditProfile />,
+      },
     ],
   },
-  { path: '/admin', element: <div>admin</div> },
   {
     path: '/login',
     element: <Login />,

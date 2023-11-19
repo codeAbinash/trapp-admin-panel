@@ -1,4 +1,9 @@
 import TextEmoji from '@/components/TextEmoji'
+import { get_counts_f } from '@/lib/api'
+import { DashboardCounts } from '@/lib/types'
+import { increaseCount } from '@/lib/utils'
+import { useCallback, useEffect, useState } from 'react'
+import { flushSync } from 'react-dom'
 
 function Dashboard() {
   return (
@@ -9,32 +14,50 @@ function Dashboard() {
 }
 
 function Cards() {
+  const [countCreators, setCountCreators] = useState(0)
+  const [countLive, setCountLive] = useState(0)
+  const [countUsers, setCountUsers] = useState(0)
+  const [countVideos, setCountVideos] = useState(0)
+
+  const loadCounts = useCallback(async () => {
+    const res = await get_counts_f()
+    if (!res.status) return
+    console.log(res.data.dash_counts)
+    const data: DashboardCounts = res.data.dash_counts
+    increaseCount(data?.creators || 0, setCountCreators)
+    increaseCount(data?.live || 0, setCountLive)
+    increaseCount(data?.users || 0, setCountUsers)
+    increaseCount(data?.videos || 0, setCountVideos)
+  }, [])
+
+  useEffect(() => {
+    loadCounts()
+  }, [])
+
   return (
     <div className='space-y-4 px-2'>
       <div>
-        <p className='text-2xl font-bold'>
-          Hi, Welcome back <TextEmoji emoji='👋' />
-        </p>
+        <p className='text-2xl font-bold'>Hi, Welcome back 👋</p>
       </div>
       <div className='flex flex-wrap gap-5  pt-5'>
         <CardCount
           icon='https://minimal-kit-react.vercel.app/assets/icons/glass/ic_glass_users.png'
-          count='714K'
+          count={countUsers.toString()}
           title='Total Users'
         />
         <CardCount
           icon='https://minimal-kit-react.vercel.app/assets/icons/glass/ic_glass_bag.png'
-          count='1.35K'
+          count={countCreators.toString()}
           title='Total Creators'
         />
         <CardCount
           icon='https://minimal-kit-react.vercel.app/assets/icons/glass/ic_glass_buy.png'
-          count='12K'
+          count={countVideos.toString()}
           title='Total Videos'
         />
         <CardCount
           icon='https://minimal-kit-react.vercel.app/assets/icons/glass/ic_glass_message.png'
-          count='2K'
+          count={countLive.toString()}
           title='Total Live'
         />
       </div>
@@ -44,7 +67,7 @@ function Cards() {
 }
 function CardCount({ count = '0', title = 'text', icon = '' }: { count?: string; title?: string; icon?: string }) {
   return (
-    <div className='flex h-28 w-[100%] items-center gap-4 rounded-2xl bg-black/5 p-5 dark:bg-white/5 sm:w-[48%] lg:w-[23%] '>
+    <div className='halka-bg flex h-28 w-[100%] items-center gap-4 rounded-2xl p-5 sm:w-[48%] lg:w-[23%] '>
       <div>
         <img src={icon} alt='' className='h-16' />
       </div>

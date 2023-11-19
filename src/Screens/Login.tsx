@@ -1,3 +1,4 @@
+import { Loading } from '@/components/Loading'
 import TextEmoji from '@/components/TextEmoji'
 import { ModeToggle } from '@/components/mode-toggle.tsx'
 import { Button } from '@/components/ui/button'
@@ -103,8 +104,8 @@ function Admin() {
     const res = await login_f(email_f, password_f)
     setIsLoading(false)
     if (!res.status) return newPopup({ title: 'Error', subTitle: res.message })
-    ls.set('token', 'Bearer ' + res.data.token)
-    navigate('/dashboard')
+    ls.set('token', res.data.token)
+    navigate('/')
   }
 
   return (
@@ -153,7 +154,7 @@ function Admin() {
           onChange={onchange}
         /> */}
           <Button className='w-full' size='lg' onClick={handelSubmit} disabled={isLoading}>
-            Log In
+            {isLoading ? <Loading text='Please wait...' /> : 'Log In'}
           </Button>
           <Button className='mt-3 w-full text-blue-500' variant='link'>
             Forget Password?

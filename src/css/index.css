@@ -6,6 +6,12 @@
 .gradient {
   @apply bg-gradient-to-tr from-red-100 to-blue-100 dark:from-red-950/40 dark:to-blue-950/40;
 }
+.halka-bg {
+  @apply bg-black/5 dark:bg-white/5;
+}
+.halka-bg-hover {
+  @apply hover:bg-black/5 dark:hover:bg-white/5;
+}
 .transparent {
   @apply from-transparent to-transparent;
 }
