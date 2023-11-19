@@ -15,6 +15,9 @@
 .dashed-border {
   @apply border border-dashed border-black/10 dark:border-white/10;
 }
+.halka-border {
+  @apply border border-black/5 dark:border-white/5;
+}
 
 .transparent {
   @apply from-transparent to-transparent;
