@@ -72,12 +72,29 @@ const API = {
   users: {
     get: `${API_URL}/user/get_users/all`,
     ban: `${API_URL}/user/ban_user`,
+    unban: `${API_URL}/user/unban_user`,
     delete: `${API_URL}/user/delete_user`,
   },
 }
 export default API
 
 // All API calls
+
+export async function unban_user_f(user_id: number): Promise<apiResponse> {
+  try {
+    const headers = authorizedHeader(defaultHeaders)
+    const body = { user_id }
+    console.log(body)
+    const res = await fetch(API.users.unban, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(body),
+    })
+    return await returnResponse(res)
+  } catch (err) {
+    return catchError(err)
+  }
+}
 
 export async function delete_user_f(user_id: number): Promise<apiResponse> {
   try {
