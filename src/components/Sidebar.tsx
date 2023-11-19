@@ -18,7 +18,7 @@ import {
 import ls from '@/lib/ls'
 import { UserProfile } from '@/lib/types'
 
-export function AlertDialogDemo() {
+export function LogoutPopupButton() {
   const navigate = useNavigate()
   return (
     <AlertDialog>
@@ -55,7 +55,7 @@ export function UserCard() {
     <div className='halka-bg tap97 flex w-full cursor-pointer items-center gap-4 rounded-xl p-4 px-5' onClick={() => navigate('/edit_profile')}>
       <img
         src={userProfile?.profile_pic ?? 'https://trappmartialarts.com/storage/users/profiles/Uv5GaHWh3aQ3fe0j9Z30TDCab8NQd06Nq3MW9r3w.jpg'}
-        className='w-10 rounded-full'
+        className='h-10 w-10 rounded-full'
       />
       <p className='text-sm font-semibold'>{userProfile?.name || 'Loading...'}</p>
     </div>
@@ -73,9 +73,9 @@ export default function Sidebar({ show, setShow }: { show: boolean; setShow: Fun
         onClick={() => setShow(false)}
       ></div>
       <div
-        className={`${show ? 'translate-x-0' : '-translate-x-full xl:-translate-x-0'} 
-        xl:transparent fixed left-0 top-0 z-20 h-full w-72 transform border border-dashed
-        border-transparent border-r-slate-500/20 bg-white transition-transform duration-300
+        className={`${show ? 'translate-x-0' : '-translate-x-full xl:-translate-x-0'} xl:transparent
+        fixed left-0 top-0 z-20 h-full w-72 transform overflow-x-hidden border border-dashed border-transparent
+        border-r-slate-500/20 bg-white transition-transform duration-300
         ease-in-out dark:bg-black xl:bg-transparent xl:dark:bg-transparent`}
       >
         <div className='flex h-full flex-col justify-between gap-3 p-5' onClick={() => setShow(false)}>
@@ -85,7 +85,7 @@ export default function Sidebar({ show, setShow }: { show: boolean; setShow: Fun
             <Options path={location.pathname} navigate={navigate} />
           </div>
           <div className='flex flex-col gap-2'>
-            <AlertDialogDemo />
+            <LogoutPopupButton />
           </div>
         </div>
       </div>

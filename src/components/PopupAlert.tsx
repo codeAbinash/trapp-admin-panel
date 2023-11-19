@@ -26,9 +26,10 @@ export default function PopupAlert() {
 
   // Remove the last popup
   const removePopup = useCallback(() => {
-    const old = [...popups]
-    old.pop()
-    setPopups(old)
+    // const old = [...popups]
+    // old.pop()
+    // setPopups(old)
+    setPopups([])
   }, [popups])
 
   const popup = popups[popups.length - 1]
@@ -46,8 +47,7 @@ export default function PopupAlert() {
             <button
               key={index}
               className={
-                action.className +
-                'highlight-none tap97 font-normMid w-full flex-grow rounded-lg  bg-black/5 py-3.5 dark:bg-white/5'
+                action.className + 'highlight-none tap97 font-normMid w-full flex-grow rounded-lg  bg-black/5 py-3.5 font-medium dark:bg-white/5'
               }
               onClick={() => {
                 transitions(removePopup, 0)()
