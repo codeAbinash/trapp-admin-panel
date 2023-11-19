@@ -13,6 +13,7 @@ import Login from './Screens/Login.tsx'
 import PopupAlert from './components/PopupAlert.tsx'
 import { PopupAlertContextProvider } from './context/PopupAlertContext.tsx'
 import store from './Redux/store.ts'
+import Users from './Screens/Users/Users.tsx'
 
 const router = createBrowserRouter([
   {
@@ -33,7 +34,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/users',
-        element: <div>Users</div>,
+        element: <Users />,
       },
       {
         path: '/videos',

@@ -1,4 +1,4 @@
-import { setProfile } from '@/Redux/profile'
+import { setProfile, setProfileInfoLs } from '@/Redux/profile'
 import store from '@/Redux/store'
 import Sidebar from '@/components/Sidebar'
 import SmallHeader from '@/components/SmallHeader'
@@ -17,6 +17,7 @@ export default function Home() {
     if (!res.status) return
     const profile = res?.data.data as UserProfile
     store.dispatch(setProfile(profile))
+    setProfileInfoLs(profile)
   }, [])
 
   useEffect(() => {
