@@ -21,3 +21,9 @@ export function increaseCount(count: number, setCount: Function, delay: number =
     if (i === 20) clearInterval(interval)
   }, 50)
 }
+
+export function delayFn(callback: Function, time = 150) {
+  return function () {
+    setTimeout(callback, time)
+  }
+}

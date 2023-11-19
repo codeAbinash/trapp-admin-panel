@@ -11,3 +11,8 @@ export type DashboardCounts = {
   videos: number
   live: number
 } | null
+
+export type userMessage = {
+  message: string
+  error: boolean
+}

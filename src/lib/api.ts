@@ -4,14 +4,13 @@ import ls from './ls'
 const API_URL = app.api
 
 const API = {
+  login: `${API_URL}/auth/login`,
   admin: {
-    login: `${API_URL}/auth/login`,
-    user: {
-      get_profile: `${API_URL}/profile/get_profile`,
-    },
-    dashboard: {
-      get_counts: `${API_URL}/dashboard/get_counts`,
-    },
+    get_profile: `${API_URL}/profile/get_profile`,
+    update_profile: `${API_URL}/profile/edit_profile`,
+  },
+  dashboard: {
+    get_counts: `${API_URL}/dashboard/get_counts`,
   },
 }
 type defaultHeaders = {
@@ -78,7 +77,7 @@ function catchError(err: any): apiResponse {
 export async function get_counts_f(): Promise<apiResponse> {
   try {
     const headers = authorizedHeader(defaultHeaders)
-    const res = await fetch(API.admin.dashboard.get_counts, {
+    const res = await fetch(API.dashboard.get_counts, {
       method: 'POST',
       headers,
     })
@@ -91,7 +90,7 @@ export async function get_counts_f(): Promise<apiResponse> {
 export async function get_profile_f(): Promise<apiResponse> {
   try {
     const headers = authorizedHeader(defaultHeaders)
-    const res = await fetch(API.admin.user.get_profile, {
+    const res = await fetch(API.admin.get_profile, {
       method: 'POST',
       headers,
     })
@@ -104,7 +103,7 @@ export async function get_profile_f(): Promise<apiResponse> {
 export async function login_f(email: string, password: string): Promise<apiResponse> {
   try {
     const body = { email, password }
-    const res = await fetch(API.admin.login, {
+    const res = await fetch(API.login, {
       method: 'POST',
       headers: defaultHeaders,
       body: JSON.stringify(body),

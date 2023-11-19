@@ -22,7 +22,6 @@ function Cards() {
   const loadCounts = useCallback(async () => {
     const res = await get_counts_f()
     if (!res.status) return
-    console.log(res.data.dash_counts)
     const data: DashboardCounts = res.data.dash_counts
     increaseCount(data?.creators || 0, setCountCreators)
     increaseCount(data?.live || 0, setCountLive)

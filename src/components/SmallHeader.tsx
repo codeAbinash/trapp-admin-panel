@@ -3,9 +3,11 @@ import { ModeToggle } from './mode-toggle.tsx'
 import { Menu } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import TapMotion from './TapMotion.tsx'
+import { useSelector } from 'react-redux'
 
-export default function SmallHeader({ setShow, userProfile }: { setShow: Function; userProfile: UserProfile }) {
+export default function SmallHeader({ setShow }: { setShow: Function }) {
   const navigate = useNavigate()
+  const userProfile: UserProfile = useSelector((state: any) => state.profile)
   return (
     <div className='flex w-full items-center justify-between p-3.5 xl:px-8'>
       <div>

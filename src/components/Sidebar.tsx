@@ -1,7 +1,8 @@
-import { NavigateFunction, useLocation, useNavigate, useParams } from 'react-router-dom'
+import { NavigateFunction, useLocation, useNavigate } from 'react-router-dom'
 import { Button } from './ui/button'
+import { useSelector } from 'react-redux'
 
-import { LayoutDashboard, BarChartBig, AreaChart, LucideIcon, Brush, User2, Video, Gem, BadgePercent, LogOut } from 'lucide-react'
+import { AreaChart, BadgePercent, BarChartBig, Brush, Gem, LogOut, LucideIcon, User2, Video } from 'lucide-react'
 
 import {
   AlertDialog,
@@ -16,23 +17,20 @@ import {
 } from '@/components/ui/alert-dialog'
 import ls from '@/lib/ls'
 import { UserProfile } from '@/lib/types'
-import TapMotion from './TapMotion'
 
 export function AlertDialogDemo() {
   const navigate = useNavigate()
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button className='w-full'>
+        <Button className='halka-bg w-full text-neutral-800 hover:text-white dark:text-neutral-200'>
           Log Out <LogOut className='h-4 pl-2' />
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-          <AlertDialogDescription>
-            Are you sure you want to log out? All of your saved data will be permanently removed. This action cannot be undone.
-          </AlertDialogDescription>
+          <AlertDialogDescription>Are you sure you want to log out?</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
@@ -50,8 +48,9 @@ export function AlertDialogDemo() {
   )
 }
 
-export function UserCard({ userProfile }: { userProfile: UserProfile }) {
+export function UserCard() {
   const navigate = useNavigate()
+  const userProfile: UserProfile = useSelector((state: any) => state.profile)
   return (
     <div className='halka-bg tap97 flex w-full cursor-pointer items-center gap-4 rounded-xl p-4 px-5' onClick={() => navigate('/edit_profile')}>
       <img
@@ -63,7 +62,7 @@ export function UserCard({ userProfile }: { userProfile: UserProfile }) {
   )
 }
 
-export default function Sidebar({ show, setShow, userProfile }: { show: boolean; setShow: Function; userProfile: UserProfile }) {
+export default function Sidebar({ show, setShow }: { show: boolean; setShow: Function }) {
   const navigate = useNavigate()
   const location = useLocation()
   // console.log(location.pathname)
@@ -82,7 +81,7 @@ export default function Sidebar({ show, setShow, userProfile }: { show: boolean;
         <div className='flex h-full flex-col justify-between gap-3 p-5' onClick={() => setShow(false)}>
           <div className='flex flex-col gap-5'>
             <img src='AppIcons/full.svg' className='w-24 p-3' />
-            <UserCard userProfile={userProfile} />
+            <UserCard />
             <Options path={location.pathname} navigate={navigate} />
           </div>
           <div className='flex flex-col gap-2'>
