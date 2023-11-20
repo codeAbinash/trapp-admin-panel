@@ -1,10 +1,11 @@
 import { Loading } from '@/components/Loading'
 import TapMotion from '@/components/TapMotion'
 import { PopupAlertType, usePopupAlertContext } from '@/context/PopupAlertContext'
-import { delete_banner_f, get_banners_f } from '@/lib/api'
+import { create_banner_f, delete_banner_f, get_banners_f } from '@/lib/api'
 import transitions from '@/lib/transition'
-import { Plus, Trash2 } from 'lucide-react'
-import { useEffect, useState } from 'react'
+import { userMessage } from '@/lib/types'
+import { Plus, Trash2, Upload } from 'lucide-react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 type Banner = {
   id: number
@@ -73,15 +74,91 @@ function Banners() {
             </div>
           )
         })}
-        <AddNewBanner />
+        <AddNewBanner loadBanners={loadBanners} />
       </div>
     </div>
   )
 }
 
-function AddNewBanner() {
+function AddNewBanner({ loadBanners }: { loadBanners: () => void }) {
+  const { newPopup } = usePopupAlertContext()
+  const pp = useRef<HTMLInputElement>(null)
+  const onChangeFileSelect = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const fileInput = e.target.files
+    const ppValidation = profilePicFileValidation(pp.current!.files![0])
+    if (ppValidation.error) {
+      newPopup({ title: 'Invalid File', subTitle: ppValidation.message })
+      return
+    }
+    transitions(() => {
+      newPopup({
+        title: 'Upload This Banner?',
+        subTitle: (
+          <div>
+            <p className='mb-3'>Are you sure you want to upload this banner?</p>
+            <div className='flex items-center justify-center'>
+              <img src={URL.createObjectURL(fileInput![0])} alt='' className='h-40 w-full rounded-2xl' />
+            </div>
+          </div>
+        ),
+        action: [
+          {
+            text: 'Cancel',
+            onClick: () => {
+              pp.current!.value = ''
+            },
+          },
+          {
+            text: <span className='text-green-500'>Upload</span>,
+            onClick: async () => {
+              setTimeout(() => {
+                transitions(() =>
+                  newPopup({
+                    title: (
+                      <div className='flex'>
+                        <Loading /> Please Wait
+                      </div>
+                    ),
+                    subTitle: (
+                      <div>
+                        <p className='mb-3'>
+                          Banner is being uploaded. Please do not close the app or refresh the page. This may take a few seconds.
+                        </p>
+                        <div className='flex items-center justify-center'>
+                          <img src={URL.createObjectURL(fileInput![0])} alt='' className='h-40 w-full rounded-2xl' />
+                        </div>
+                      </div>
+                    ),
+                    action: [],
+                  }),
+                )()
+              }, 500)
+              const body = new FormData()
+              body.append('banner_image', fileInput![0])
+              const res = await create_banner_f(body)
+              console.log(res)
+              if (!res.status) return transitions(() => newPopup({ title: 'Error', subTitle: res.message }))()
+              transitions(() =>
+                newPopup({
+                  title: 'Banner Uploaded',
+                  subTitle: `Banner has been uploaded.`,
+                }),
+              )()
+              loadBanners()
+            },
+          },
+        ],
+      })
+    })()
+  }, [])
   return (
-    <div className='tap99 flex cursor-pointer items-center justify-center'>
+    <div
+      className='tap99 flex cursor-pointer items-center justify-center'
+      onClick={() => {
+        pp.current!.click()
+      }}
+    >
+      <input type='file' className='hidden' ref={pp} onChange={onChangeFileSelect} accept='image/png, image/jpeg, image/jpg' />
       <div className='halka-bg group relative rounded-2xl p-5'>
         <div className='flex h-40 w-80  items-center justify-center rounded-2xl object-cover'>
           <Plus className='h-10 w-10 text-gray-400' />
@@ -89,6 +166,23 @@ function AddNewBanner() {
       </div>
     </div>
   )
+}
+
+function profilePicFileValidation(file: File): userMessage {
+  const allowedTypes = ['image/png', 'image/jpeg', 'image/jpg']
+  const maxSize = 2 * 1024 * 1024
+  console.log(file)
+  if (!allowedTypes.includes(file.type))
+    return {
+      message: 'Invalid file type (only .png, .jpeg, .jpg)',
+      error: true,
+    }
+  if (file.size > maxSize)
+    return {
+      message: 'Max File Size is 2MB',
+      error: true,
+    }
+  return { message: '', error: false }
 }
 
 async function deleteBannerFn(id: number, newPopup: (popup: PopupAlertType) => void, loadBanners: () => void) {
