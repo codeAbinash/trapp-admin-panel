@@ -14,6 +14,7 @@ import PopupAlert from './components/PopupAlert.tsx'
 import { PopupAlertContextProvider } from './context/PopupAlertContext.tsx'
 import store from './Redux/store.ts'
 import Users from './Screens/Users/Users.tsx'
+import Banners from './Screens/Banners/Banners.tsx'
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
       {
         path: '/edit_profile',
         element: <EditProfile />,
+      },
+      {
+        path: '/banners',
+        element: <Banners />,
       },
     ],
   },

@@ -43,7 +43,7 @@ export default function PopupAlert() {
   if (!popups.length) return null
   return (
     <div className='fixed z-[100] flex h-screen w-full select-none items-center justify-center '>
-      <div className='w-[85%] max-w-sm rounded-xl border border-white/10 bg-white/90 shadow-[0px_0px_100vh_100dvh_#00000075,0_0_10px_10px_#00000005] backdrop-blur-lg dark:bg-neutral-900/80'>
+      <div className='w-[85%] max-w-sm rounded-xl border border-white/10 bg-white/90 shadow-[0px_0px_100vh_100dvh_#00000075,0_0_10px_10px_#00000005] backdrop-blur-lg dark:bg-neutral-900/90'>
         <div className='p-6 pb-0'>
           <div className='text-md font-normMid font-medium'>{popup.title}</div>
           <div className='mt-2 text-sm font-[450]'>{popup.subTitle}</div>

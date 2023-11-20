@@ -11,7 +11,7 @@ export type PopupAlertType = {
 type ActionType = {
   text: string | JSX.Element
   className?: string
-  onClick?: () => void
+  onClick?: () => void | null | Promise<void | null>
 }
 
 type Popups = {

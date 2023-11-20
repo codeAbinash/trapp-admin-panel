@@ -2,7 +2,19 @@ import { NavigateFunction, useLocation, useNavigate } from 'react-router-dom'
 import { Button } from './ui/button'
 import { useSelector } from 'react-redux'
 
-import { AreaChart, BadgePercent, BarChartBig, Brush, Gem, LogOut, LucideIcon, User2, Video } from 'lucide-react'
+import {
+  AreaChart,
+  BadgePercent,
+  BarChartBig,
+  Brush,
+  GalleryHorizontal,
+  GalleryHorizontalEnd,
+  Gem,
+  LogOut,
+  LucideIcon,
+  User2,
+  Video,
+} from 'lucide-react'
 
 import {
   AlertDialog,
@@ -96,6 +108,7 @@ function Options({ path, navigate }: { path: string; navigate: NavigateFunction 
   return (
     <div className='flex flex-col gap-2'>
       <OptionItem navigate={navigate} path='/' currentPath={path} name='Dashboard' SideIcon={BarChartBig} />
+      <OptionItem navigate={navigate} path='/banners' currentPath={path} name='Banners' SideIcon={GalleryHorizontal} />
       <OptionItem navigate={navigate} path='/users' currentPath={path} name='Users' SideIcon={User2} />
       <OptionItem navigate={navigate} path='/creators' currentPath={path} name='Creators' SideIcon={Brush} />
       <OptionItem navigate={navigate} path='/videos' currentPath={path} name='Videos' SideIcon={Video} />

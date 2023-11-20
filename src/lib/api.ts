@@ -75,10 +75,58 @@ const API = {
     unban: `${API_URL}/user/unban_user`,
     delete: `${API_URL}/user/delete_user`,
   },
+  banners: {
+    get_all: `${API_URL}/banner/get_banner`,
+    create: `${API_URL}/banner/create_banner`,
+    delete: `${API_URL}/banner/delete`,
+  },
 }
 export default API
 
 // All API calls
+
+export async function delete_banner_f(id: number): Promise<apiResponse> {
+  try {
+    const headers = authorizedHeader(defaultHeaders)
+    const body = { id }
+    console.log(body)
+    const res = await fetch(API.banners.delete, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(body),
+    })
+    return await returnResponse(res)
+  } catch (err) {
+    return catchError(err)
+  }
+}
+
+export async function create_banner_f(body: any): Promise<apiResponse> {
+  try {
+    const headers = authorizedHeader(formDataHeaders)
+    const res = await fetch(API.banners.create, {
+      method: 'POST',
+      headers,
+      body: body,
+    })
+    return await returnResponse(res)
+  } catch (err) {
+    return catchError(err)
+  }
+}
+
+export async function get_banners_f(): Promise<apiResponse> {
+  try {
+    const headers = authorizedHeader(defaultHeaders)
+    const res = await fetch(API.banners.get_all, {
+      method: 'POST',
+      headers,
+    })
+    return await returnResponse(res)
+  } catch (err) {
+    return catchError(err)
+  }
+}
 
 export async function unban_user_f(user_id: number): Promise<apiResponse> {
   try {
