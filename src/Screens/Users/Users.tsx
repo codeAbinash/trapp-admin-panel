@@ -12,7 +12,7 @@ import {
   useReactTable,
 } from '@tanstack/react-table'
 
-import Pagination, { PaginationT, defaultPagination } from './Pagination'
+import Pagination from './Pagination'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -37,6 +37,7 @@ import { getStatusColor, getSubscriptionColor } from '@/lib/utils'
 import { Ban, Trash2 } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { User } from './data'
+import { PaginationT, defaultPagination } from './types'
 
 function BanUser({ open, setOpen, id }: { open: boolean; setOpen: React.Dispatch<React.SetStateAction<boolean>>; id: number }) {
   const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -76,7 +77,7 @@ function BanUser({ open, setOpen, id }: { open: boolean; setOpen: React.Dispatch
         <DialogFooter>
           <div className='flex w-full flex-col gap-3'>
             <Button className='w-full' onClick={banUser} disabled={isLoading}>
-              {isLoading ? <Loading text='Banning User...' /> : 'Ban User'}
+              {isLoading ? <Loading text='Banning User...' invert='invert' /> : 'Ban User'}
             </Button>
             <Button
               variant='outline'
@@ -121,7 +122,7 @@ function DeleteUser({ open, setOpen, id }: { open: boolean; setOpen: React.Dispa
         <DialogFooter>
           <div className='flex w-full flex-col gap-3'>
             <Button className='w-full' onClick={banUser} disabled={isLoading}>
-              {isLoading ? <Loading text='Deleting User...' /> : 'Delete User'}
+              {isLoading ? <Loading text='Deleting User...' invert='invert' /> : 'Delete User'}
             </Button>
             <Button
               variant='outline'
@@ -166,7 +167,7 @@ function UnBanUser({ open, setOpen, id }: { open: boolean; setOpen: React.Dispat
         <DialogFooter>
           <div className='flex w-full flex-col gap-3'>
             <Button className='w-full' onClick={unbanUser} disabled={isLoading}>
-              {isLoading ? <Loading text='Unban User...' /> : 'Unban User'}
+              {isLoading ? <Loading text='Unban User...' invert='invert' /> : 'Unban User'}
             </Button>
             <Button
               variant='outline'
@@ -379,7 +380,7 @@ export default function Users() {
 
   return (
     <div className='w-full whitespace-pre'>
-      <div className='flex items-center py-4'>
+      <div className='flex items-center gap-2 py-4'>
         <Input
           placeholder='Filter emails...'
           value={(table.getColumn('email')?.getFilterValue() as string) ?? ''}
@@ -438,14 +439,14 @@ export default function Users() {
             ) : (
               <TableRow>
                 <TableCell colSpan={columns.length} className='h-24 text-center'>
-                  {!users ? <Loading text='Loading Users...' /> : users.length ? 'No results.' : 'No users found.'}
+                  {!users ? <Loading text='Loading Users...' invert='auto' /> : users.length ? 'No results.' : 'No users found.'}
                 </TableCell>
               </TableRow>
             )}
           </TableBody>
         </Table>
       </div>
-      <div className='mt-12 flex items-center justify-center space-x-2 '>
+      <div className='flex items-center justify-center space-x-2 '>
         <Pagination pagination={pagination} loadUsers={loadUsers} isLoading={isLoading} />
       </div>
     </div>

@@ -45,7 +45,7 @@ export default function BanUser({ open, setOpen, id }: { open: boolean; setOpen:
         <DialogFooter>
           <div className='flex w-full flex-col gap-3'>
             <Button className='w-full' onClick={banUser} disabled={isLoading}>
-              {isLoading ? <Loading text='Banning User...' /> : 'Ban User'}
+              {isLoading ? <Loading text='Banning User...' invert='invert' /> : 'Ban User'}
             </Button>
             <Button
               variant='outline'

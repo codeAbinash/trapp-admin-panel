@@ -218,7 +218,7 @@ function ChangePassword() {
       </CardContent>
       <CardFooter className='flex-col'>
         <Button className='w-full' size='lg' onClick={handelSubmit} disabled={isUpdating}>
-          {isUpdating ? <Loading text='Updating...' /> : 'Update Profile'}
+          {isUpdating ? <Loading text='Updating...' invert='invert' /> : 'Update Profile'}
         </Button>
       </CardFooter>
     </div>

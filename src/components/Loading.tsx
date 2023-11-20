@@ -1,7 +1,7 @@
-export function Loading({ text }: { text?: string }) {
+export function Loading({ text, invert = 'auto' }: { text?: string; invert?: 'auto' | 'invert' }) {
   return (
     <div className='screen flex items-center justify-center gap-3'>
-      <img src='/icons/other/loading.svg' className='w-[1.15rem] invert' />
+      <img src='/icons/other/loading.svg' className={`w-[1.15rem] ${invert == 'invert' ? 'invert' : 'dark:invert'}`} />
       <p>{text}</p>
     </div>
   )

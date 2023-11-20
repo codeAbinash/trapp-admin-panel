@@ -154,7 +154,7 @@ function Admin() {
           onChange={onchange}
         /> */}
           <Button className='w-full' size='lg' onClick={handelSubmit} disabled={isLoading}>
-            {isLoading ? <Loading text='Please wait...' /> : 'Log In'}
+            {isLoading ? <Loading text='Please wait...' invert='invert' /> : 'Log In'}
           </Button>
           <Button className='mt-3 w-full text-blue-500' variant='link'>
             Forget Password?
