@@ -5,7 +5,7 @@ import { create_banner_f, delete_banner_f, get_banners_f } from '@/lib/api'
 import transitions from '@/lib/transition'
 import { userMessage } from '@/lib/types'
 import { Plus, Trash2, Upload } from 'lucide-react'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { RefObject, useCallback, useEffect, useRef, useState } from 'react'
 
 type Banner = {
   id: number
@@ -40,18 +40,6 @@ function Banners() {
         </div>
       </div>
     )
-
-  // if (banners.length === 0)
-  //   return (
-  //     <div>
-  //       <p className='mb-5 text-2xl font-bold'>Banners 🖼️</p>
-  //       <div className='grid grid-cols-1 items-center justify-center gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-  //         <div className='halka-bg flex aspect-video items-center justify-center rounded-2xl'>
-  //           <p className='text-2xl font-bold'>No Banners Found</p>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   )
 
   return (
     <div>
@@ -92,62 +80,7 @@ function AddNewBanner({ loadBanners }: { loadBanners: () => void }) {
       pp.current!.value = ''
       return
     }
-    transitions(() => {
-      newPopup({
-        title: 'Upload This Banner?',
-        subTitle: (
-          <div className='w-full'>
-            <p className='mb-3'>Are you sure you want to upload this banner?</p>
-            <img src={URL.createObjectURL(fileInput![0])} alt='' className='aspect-[2/1] w-full rounded-2xl object-cover' />
-          </div>
-        ),
-        action: [
-          {
-            text: 'Cancel',
-            onClick: () => {
-              pp.current!.value = ''
-            },
-          },
-          {
-            text: <span className='text-green-500'>Upload</span>,
-            onClick: async () => {
-              setTimeout(() => {
-                transitions(() =>
-                  newPopup({
-                    title: (
-                      <div className='flex'>
-                        <Loading /> Please Wait
-                      </div>
-                    ),
-                    subTitle: (
-                      <div>
-                        <p className='mb-3'>
-                          Banner is being uploaded. Please do not close the app or refresh the page. This may take a few seconds.
-                        </p>
-                        <img src={URL.createObjectURL(fileInput![0])} alt='' className='aspect-[2/1] w-full rounded-2xl object-cover' />
-                      </div>
-                    ),
-                    action: [],
-                  }),
-                )()
-              }, 500)
-              const body = new FormData()
-              body.append('banner_image', fileInput![0])
-              const res = await create_banner_f(body)
-              console.log(res)
-              if (!res.status) return transitions(() => newPopup({ title: 'Error', subTitle: res.message }))()
-              transitions(() =>
-                newPopup({
-                  title: 'Banner Uploaded',
-                  subTitle: `Banner has been uploaded.`,
-                }),
-              )()
-              loadBanners()
-            },
-          },
-        ],
-      })
-    })()
+    addNewBannerFn(fileInput, pp, newPopup, loadBanners)
   }, [])
   return (
     <div
@@ -162,6 +95,68 @@ function AddNewBanner({ loadBanners }: { loadBanners: () => void }) {
       </div>
     </div>
   )
+}
+
+function addNewBannerFn(
+  fileInput: FileList | null,
+  pp: RefObject<HTMLInputElement>,
+  newPopup: (popup: PopupAlertType) => void,
+  loadBanners: () => void,
+) {
+  transitions(() => {
+    newPopup({
+      title: 'Upload This Banner?',
+      subTitle: (
+        <div className='w-full'>
+          <img src={URL.createObjectURL(fileInput![0])} alt='' className='aspect-[2/1] w-full rounded-2xl object-cover' />
+          <p className='mt-3'>Are you sure you want to upload this banner?</p>
+        </div>
+      ),
+      action: [
+        {
+          text: 'Cancel',
+          onClick: () => {
+            pp.current!.value = ''
+          },
+        },
+        {
+          text: <span className='text-green-500'>Upload</span>,
+          onClick: async () => {
+            setTimeout(() => {
+              transitions(() =>
+                newPopup({
+                  title: (
+                    <div className='flex'>
+                      <Loading /> Please Wait
+                    </div>
+                  ),
+                  subTitle: (
+                    <div>
+                      <img src={URL.createObjectURL(fileInput![0])} alt='' className='aspect-[2/1] w-full rounded-2xl object-cover' />
+                      <p className='mt-3'>Banner is being uploaded. Please do not close the app or refresh the page. This may take a few seconds.</p>
+                    </div>
+                  ),
+                  action: [],
+                }),
+              )()
+            }, 500)
+            const body = new FormData()
+            body.append('banner_image', fileInput![0])
+            const res = await create_banner_f(body)
+            console.log(res)
+            if (!res.status) return transitions(() => newPopup({ title: 'Error', subTitle: res.message }))()
+            transitions(() =>
+              newPopup({
+                title: 'Banner Uploaded',
+                subTitle: `Banner has been uploaded.`,
+              }),
+            )()
+            loadBanners()
+          },
+        },
+      ],
+    })
+  })()
 }
 
 function profilePicFileValidation(file: File): userMessage {
