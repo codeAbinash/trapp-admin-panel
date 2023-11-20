@@ -209,7 +209,7 @@ const columns: ColumnDef<User>[] = [
   {
     accessorKey: 'email',
     header: 'Email',
-    cell: ({ row }) => <div className='font-[450] lowercase'>{row.getValue('email')}</div>,
+    cell: ({ row }) => <div className='font-[450]'>{row.getValue('email') || <span className='font-normal opacity-30'>Not Provided</span>}</div>,
   },
   {
     accessorKey: 'status',
@@ -229,8 +229,8 @@ const columns: ColumnDef<User>[] = [
     cell: ({ row }) => {
       return (
         <div className='flex items-center space-x-2'>
-          <div className={`h-3 w-3 rounded-full ${getSubscriptionColor(row.getValue('subscription'))}`} />
-          <div className='text-sm font-[450] capitalize'>{row.getValue('subscription')}</div>
+          <div className={`h-3 w-3 rounded-full ${getSubscriptionColor(row.getValue('subscription') || 'regular')}`} />
+          <div className='text-sm font-[450] capitalize'>{row.getValue('subscription') || <span className='font-normal'>Regular</span>}</div>
         </div>
       )
     },

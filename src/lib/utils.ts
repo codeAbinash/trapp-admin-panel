@@ -44,7 +44,7 @@ export function getStatusColor(status: string) {
   }
 }
 
-export function getSubscriptionColor(subscription: string) {
+export function getSubscriptionColor(subscription: 'expired' | 'active' | 'trial' | 'regular') {
   switch (subscription) {
     case 'expired':
       return 'bg-gray-500'
@@ -52,6 +52,8 @@ export function getSubscriptionColor(subscription: string) {
       return 'bg-green-500'
     case 'trial':
       return 'bg-yellow-500'
+    case 'regular':
+      return 'bg-black/20 dark:bg-white/25'
     default:
       return 'bg-transparent'
   }
