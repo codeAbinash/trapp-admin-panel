@@ -61,7 +61,7 @@ function Banners() {
             <div className='flex items-center justify-center' key={banner.id}>
               <div className='halka-bg group relative rounded-2xl p-5'>
                 <div
-                  className='tap95 halka-bg absolute right-2 top-2 cursor-pointer rounded-full bg-black/80 p-2.5 opacity-0 backdrop-blur-md transition duration-300 ease-in-out group-hover:opacity-100 dark:bg-white/80'
+                  className='tap95 absolute right-2 top-2 cursor-pointer rounded-full bg-white/80 p-2.5 opacity-0 backdrop-blur-md transition duration-300 ease-in-out group-hover:opacity-100 dark:bg-black/50'
                   onClick={() => deleteBannerFn(banner.id, newPopup, loadBanners)}
                 >
                   <TapMotion size='lg'>
