@@ -57,10 +57,12 @@ function Banners() {
     <div>
       <p className='mb-5 text-2xl font-bold'>Banners 🖼️</p>
       <div className='grid grid-cols-1 items-center justify-center gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 '>
+        <AddNewBanner loadBanners={loadBanners} />
+
         {banners?.map((banner) => {
           return (
-            <div className='flex items-center justify-center' key={banner.id}>
-              <div className='halka-bg group relative rounded-2xl p-5'>
+            <div className='flex w-full items-center justify-center' key={banner.id}>
+              <div className='halka-bg group relative w-full rounded-2xl p-5'>
                 <div
                   className='tap95 absolute right-2 top-2 cursor-pointer rounded-full bg-white/80 p-2.5 opacity-0 backdrop-blur-md transition duration-300 ease-in-out group-hover:opacity-100 dark:bg-black/50'
                   onClick={() => deleteBannerFn(banner.id, newPopup, loadBanners)}
@@ -69,12 +71,11 @@ function Banners() {
                     <Trash2 className='h-5 w-5 text-red-500' />
                   </TapMotion>
                 </div>
-                <img src={banner.img_src} alt='' className='h-40 w-80 rounded-2xl  object-cover' />
+                <img src={banner.img_src} alt='' className='aspect-[2/1] w-full rounded-2xl  object-cover' />
               </div>
             </div>
           )
         })}
-        <AddNewBanner loadBanners={loadBanners} />
       </div>
     </div>
   )
@@ -88,17 +89,16 @@ function AddNewBanner({ loadBanners }: { loadBanners: () => void }) {
     const ppValidation = profilePicFileValidation(pp.current!.files![0])
     if (ppValidation.error) {
       newPopup({ title: 'Invalid File', subTitle: ppValidation.message })
+      pp.current!.value = ''
       return
     }
     transitions(() => {
       newPopup({
         title: 'Upload This Banner?',
         subTitle: (
-          <div>
+          <div className='w-full'>
             <p className='mb-3'>Are you sure you want to upload this banner?</p>
-            <div className='flex items-center justify-center'>
-              <img src={URL.createObjectURL(fileInput![0])} alt='' className='h-40 w-full rounded-2xl' />
-            </div>
+            <img src={URL.createObjectURL(fileInput![0])} alt='' className='aspect-[2/1] w-full rounded-2xl object-cover' />
           </div>
         ),
         action: [
@@ -124,9 +124,7 @@ function AddNewBanner({ loadBanners }: { loadBanners: () => void }) {
                         <p className='mb-3'>
                           Banner is being uploaded. Please do not close the app or refresh the page. This may take a few seconds.
                         </p>
-                        <div className='flex items-center justify-center'>
-                          <img src={URL.createObjectURL(fileInput![0])} alt='' className='h-40 w-full rounded-2xl' />
-                        </div>
+                        <img src={URL.createObjectURL(fileInput![0])} alt='' className='aspect-[2/1] w-full rounded-2xl object-cover' />
                       </div>
                     ),
                     action: [],
@@ -153,16 +151,14 @@ function AddNewBanner({ loadBanners }: { loadBanners: () => void }) {
   }, [])
   return (
     <div
-      className='tap99 flex cursor-pointer items-center justify-center'
+      className='tap99 flex aspect-[2/1] h-full w-full cursor-pointer items-center justify-center'
       onClick={() => {
         pp.current!.click()
       }}
     >
       <input type='file' className='hidden' ref={pp} onChange={onChangeFileSelect} accept='image/png, image/jpeg, image/jpg' />
-      <div className='halka-bg group relative rounded-2xl p-5'>
-        <div className='flex h-40 w-80  items-center justify-center rounded-2xl object-cover'>
-          <Plus className='h-10 w-10 text-gray-400' />
-        </div>
+      <div className='halka-bg group relative flex h-full w-full items-center justify-center rounded-2xl p-5'>
+        <Plus className='h-10 w-10 text-gray-400' />
       </div>
     </div>
   )
@@ -202,7 +198,7 @@ async function deleteBannerFn(id: number, newPopup: (popup: PopupAlertType) => v
                       <Loading /> Please Wait
                     </div>
                   ),
-                  subTitle: `Banner with id ${id} is being deleted.`,
+                  subTitle: `Banner is being deleted.`,
                   action: [],
                 }),
               )()
@@ -214,7 +210,7 @@ async function deleteBannerFn(id: number, newPopup: (popup: PopupAlertType) => v
             transitions(() =>
               newPopup({
                 title: 'Banner Deleted',
-                subTitle: `Banner with id ${id} has been deleted.`,
+                subTitle: `Banner has been deleted.`,
               }),
             )()
             loadBanners()
