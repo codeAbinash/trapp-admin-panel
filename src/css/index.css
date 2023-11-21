@@ -93,7 +93,5 @@
   }
   body {
     @apply bg-background text-foreground;
-    color: #445566;
-    color: limegreen;
   }
 }
