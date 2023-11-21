@@ -89,7 +89,13 @@ function AddNewBanner({ loadBanners }: { loadBanners: () => void }) {
         pp.current!.click()
       }}
     >
-      <input type='file' className='hidden' ref={pp} onChange={onChangeFileSelect} accept='image/png, image/jpeg, image/jpg' />
+      <input
+        type='file'
+        className='hidden'
+        ref={pp}
+        onChange={onChangeFileSelect}
+        accept='image/png, image/jpeg, image/jpg'
+      />
       <div className='halka-bg group relative flex h-full w-full items-center justify-center rounded-2xl p-5'>
         <Plus className='h-10 w-10 text-gray-400' />
       </div>
@@ -108,7 +114,11 @@ function addNewBannerFn(
       title: 'Upload This Banner?',
       subTitle: (
         <div className='w-full'>
-          <img src={URL.createObjectURL(fileInput![0])} alt='' className='aspect-[2/1] w-full rounded-2xl object-cover' />
+          <img
+            src={URL.createObjectURL(fileInput![0])}
+            alt=''
+            className='aspect-[2/1] w-full rounded-2xl object-cover'
+          />
           <p className='mt-3'>Are you sure you want to upload this banner?</p>
         </div>
       ),
@@ -132,8 +142,15 @@ function addNewBannerFn(
                   ),
                   subTitle: (
                     <div>
-                      <img src={URL.createObjectURL(fileInput![0])} alt='' className='aspect-[2/1] w-full rounded-2xl object-cover' />
-                      <p className='mt-3'>Banner is being uploaded. Please do not close the app or refresh the page. This may take a few seconds.</p>
+                      <img
+                        src={URL.createObjectURL(fileInput![0])}
+                        alt=''
+                        className='aspect-[2/1] w-full rounded-2xl object-cover'
+                      />
+                      <p className='mt-3'>
+                        Banner is being uploaded. Please do not close the app or refresh the page. This may take a few
+                        seconds.
+                      </p>
                     </div>
                   ),
                   action: [],

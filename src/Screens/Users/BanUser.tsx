@@ -7,7 +7,15 @@ import { ban_user_f } from '@/lib/api'
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@radix-ui/react-dialog'
 import { useState } from 'react'
 
-export default function BanUser({ open, setOpen, id }: { open: boolean; setOpen: React.Dispatch<React.SetStateAction<boolean>>; id: number }) {
+export default function BanUser({
+  open,
+  setOpen,
+  id,
+}: {
+  open: boolean
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>
+  id: number
+}) {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [reason, setReason] = useState<string>('')
   const { newPopup } = usePopupAlertContext()
@@ -28,7 +36,8 @@ export default function BanUser({ open, setOpen, id }: { open: boolean; setOpen:
         <DialogHeader>
           <DialogTitle>Ban this user?</DialogTitle>
           <DialogDescription>
-            Are you sure you want to ban this user(User Id <span className='font-[500]'>{id}</span>)? If yes please provide a reason for the ban.
+            Are you sure you want to ban this user(User Id <span className='font-[500]'>{id}</span>)? If yes please
+            provide a reason for the ban.
           </DialogDescription>
         </DialogHeader>
         <Textarea

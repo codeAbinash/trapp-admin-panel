@@ -4,7 +4,7 @@
 /* Inter font family */
 
 .gradient {
-  @apply bg-gradient-to-bl from-red-100 to-blue-100 dark:from-red-950/30 dark:to-blue-950/30;
+  @apply bg-gradient-to-tr from-red-100 to-blue-100 dark:from-red-950/30 dark:to-blue-950/30;
 }
 .halka-bg {
   @apply bg-black/5 dark:bg-white/5;
@@ -93,5 +93,7 @@
   }
   body {
     @apply bg-background text-foreground;
+    color: #445566;
+    color: limegreen;
   }
 }

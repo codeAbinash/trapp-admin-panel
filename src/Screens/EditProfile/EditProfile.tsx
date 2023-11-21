@@ -166,7 +166,13 @@ function ChangePassword() {
         <CardDescription className='font-medium'></CardDescription>
       </CardHeader>
       <CardContent className='space-y-2'>
-        <input type='file' className='hidden' ref={pp} onChange={onChangeFileSelect} accept='image/png, image/jpeg, image/jpg' />
+        <input
+          type='file'
+          className='hidden'
+          ref={pp}
+          onChange={onChangeFileSelect}
+          accept='image/png, image/jpeg, image/jpg'
+        />
         <div className='space-y-1'>
           <Label htmlFor='name'>Name</Label>
           <Input

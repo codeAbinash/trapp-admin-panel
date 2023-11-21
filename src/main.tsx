@@ -15,6 +15,7 @@ import { PopupAlertContextProvider } from './context/PopupAlertContext.tsx'
 import store from './Redux/store.ts'
 import Users from './Screens/Users/Users.tsx'
 import Banners from './Screens/Banners/Banners.tsx'
+import Creators from './Screens/Users/Creators.tsx'
 
 const router = createBrowserRouter([
   {
@@ -31,7 +32,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/creators',
-        element: <div>Creators</div>,
+        element: <Creators />,
       },
       {
         path: '/users',
