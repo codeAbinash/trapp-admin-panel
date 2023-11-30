@@ -15,6 +15,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import store from '@/Redux/store.ts'
+import { DEFAULT_PP } from '@/constants.ts'
 
 export function DropdownMenuDemo({ userProfile }: { userProfile: UserProfile }) {
   const navigate = useNavigate()
@@ -80,7 +81,7 @@ export default function SmallHeader({ setShow }: { setShow: React.Dispatch<React
         <ModeToggle />
         <TapMotion size='md'>
           <img
-            src={userProfile?.profile_pic}
+            src={userProfile?.profile_pic || DEFAULT_PP}
             className='aspect-square h-9 w-9 cursor-pointer rounded-full'
             onClick={() => navigate('/edit_profile')}
           />

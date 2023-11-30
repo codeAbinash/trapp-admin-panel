@@ -7,8 +7,8 @@ import {
   BadgePercent,
   BarChartBig,
   Brush,
+  Code,
   GalleryHorizontal,
-  GalleryHorizontalEnd,
   Gem,
   LogOut,
   LucideIcon,
@@ -137,6 +137,7 @@ function Options({ path, navigate }: { path: string; navigate: NavigateFunction 
         name='Creator Withdraw'
         SideIcon={BadgePercent}
       />
+      <OptionItem navigate={navigate} path='/code' currentPath={path} name='Code' SideIcon={Code} />
     </div>
   )
 }

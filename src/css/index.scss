@@ -20,6 +20,9 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body {
   font-family: 'Jost', sans-serif;
 }
 
@@ -54,4 +57,10 @@
   &:active {
     scale: 0.95;
   }
+}
+
+.aurora-code {
+  font-family: 'Cascadia Code', 'Fira Code', 'JetBrains Mono', 'Source Code Pro', 'Courier New', Courier, monospace;
+  background-color: #1e1e1e;
+  color: rgb(221, 221, 221);
 }

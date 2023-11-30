@@ -41,7 +41,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { usePopupAlertContext } from '@/context/PopupAlertContext'
 import API, { ban_user_f, delete_user_f, get_users_f, unban_user_f } from '@/lib/api'
 import { getStatusColor, getSubscriptionColor } from '@/lib/utils'
-import { Ban, Trash2 } from 'lucide-react'
+import { Ban, Plus, Trash2 } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { User } from './data'
 import { PaginationT, defaultPagination } from './types'
@@ -96,6 +96,12 @@ export default function Creators() {
 
   return (
     <div className='w-full whitespace-pre'>
+      <div>
+        <Button className='px-5'>
+          <Plus className='mr-2 h-4 w-4' />
+          New Creator
+        </Button>
+      </div>
       <div className='flex items-center gap-2 py-4'>
         <Input
           placeholder='Filter emails...'

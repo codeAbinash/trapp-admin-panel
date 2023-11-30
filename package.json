@@ -27,6 +27,8 @@
     "@reduxjs/toolkit": "^1.9.7",
     "@tanstack/react-table": "^8.10.7",
     "@types/react-google-recaptcha": "^2.1.8",
+    "aurora-code": "^2.0.2",
+    "aurora-react": "^2.0.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "emoji-store": "^2.0.1",
