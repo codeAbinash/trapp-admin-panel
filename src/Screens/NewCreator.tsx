@@ -2,7 +2,7 @@ import { Loading } from '@/components/Loading'
 import { Button } from '@/components/ui/button'
 import { CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
-import { Label } from '@radix-ui/react-label'
+import { Label } from '@/components/ui/label'
 import React from 'react'
 
 function NewCreator() {
@@ -41,9 +41,7 @@ function NewCreator() {
                 id='name'
                 placeholder='e.g. John Doe'
                 type='text'
-                onChange={(e) => {
-                  setName(e.target.value)
-                }}
+                onChange={(e) => setName(e.target.value)}
                 value={name}
               />
             </div>
@@ -53,10 +51,8 @@ function NewCreator() {
                 id='tel'
                 placeholder='e.g. 9876543210'
                 type='tel'
-                onChange={(e) => {
-                  setName(e.target.value)
-                }}
-                value={name}
+                onChange={(e) => setPhone(e.target.value)}
+                value={phone}
               />
             </div>
             <div className='space-y-1'>
@@ -65,9 +61,7 @@ function NewCreator() {
                 id='email'
                 placeholder='e.g. helloworld@gmail.com'
                 type='email'
-                onChange={(e) => {
-                  setEmail(e.target.value)
-                }}
+                onChange={(e) => setEmail(e.target.value)}
                 value={email}
               />
             </div>
@@ -77,9 +71,7 @@ function NewCreator() {
                 id='address'
                 placeholder='e.g. 123, Main Street, New York'
                 type='text'
-                onChange={(e) => {
-                  setAddress(e.target.value)
-                }}
+                onChange={(e) => setAddress(e.target.value)}
                 value={address}
               />
             </div>
@@ -89,9 +81,7 @@ function NewCreator() {
                 id='payment'
                 placeholder='Payment Details'
                 type='text'
-                onChange={(e) => {
-                  setPayment(e.target.value)
-                }}
+                onChange={(e) => setPayment(e.target.value)}
                 value={payment}
               />
             </div>
@@ -101,9 +91,7 @@ function NewCreator() {
                 id='pass1'
                 placeholder='Enter password'
                 type='password'
-                onChange={(e) => {
-                  setPass1(e.target.value)
-                }}
+                onChange={(e) => setPass1(e.target.value)}
                 value={pass1}
               />
             </div>
@@ -113,9 +101,7 @@ function NewCreator() {
                 id='pass2'
                 placeholder='Confirm password'
                 type='password'
-                onChange={(e) => {
-                  setPass2(e.target.value)
-                }}
+                onChange={(e) => setPass2(e.target.value)}
                 value={pass2}
               />
             </div>
