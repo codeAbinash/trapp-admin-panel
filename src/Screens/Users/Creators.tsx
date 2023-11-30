@@ -45,6 +45,7 @@ import { Ban, Plus, Trash2 } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { User } from './data'
 import { PaginationT, defaultPagination } from './types'
+import { useNavigate } from 'react-router-dom'
 
 export default function Creators() {
   const [sorting, setSorting] = useState<SortingState>([])
@@ -54,6 +55,7 @@ export default function Creators() {
   const [users, setUsers] = useState<User[] | null>(null)
   const [pagination, setPagination] = useState<PaginationT>(defaultPagination)
   const [isLoading, setIsLoading] = useState<boolean>(false)
+  const navigate = useNavigate()
 
   useEffect(() => {
     loadUsers()
@@ -97,7 +99,12 @@ export default function Creators() {
   return (
     <div className='w-full whitespace-pre'>
       <div>
-        <Button className='px-5'>
+        <Button
+          className='px-5'
+          onClick={() => {
+            navigate('/creators/new')
+          }}
+        >
           <Plus className='mr-2 h-4 w-4' />
           New Creator
         </Button>

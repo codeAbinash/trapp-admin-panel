@@ -17,6 +17,7 @@ import Users from './Screens/Users/Users.tsx'
 import Banners from './Screens/Banners/Banners.tsx'
 import Creators from './Screens/Users/Creators.tsx'
 import Code from './Screens/Code/Code.tsx'
+import NewCreator from './Screens/NewCreator.tsx'
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: '/creators',
         element: <Creators />,
+      },
+      {
+        path: '/creators/new',
+        element: <NewCreator />,
       },
       {
         path: '/users',

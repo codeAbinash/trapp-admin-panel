@@ -213,7 +213,7 @@ function ChangePassword() {
           <Label htmlFor='pass2'>Confirm Password</Label>
           <Input
             id='pass2'
-            placeholder='Enter your password'
+            placeholder='Confirm your password'
             type='password'
             onChange={(e) => {
               setPass2(e.target.value)
