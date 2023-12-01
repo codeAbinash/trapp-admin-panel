@@ -13,8 +13,6 @@ function NewCreator() {
   const [isUpdating, setIsUpdating] = React.useState(false)
   const [phone, setPhone] = React.useState('')
   const [address, setAddress] = React.useState('')
-  const [payment, setPayment] = React.useState('')
-  const pp = React.useRef<HTMLInputElement>(null)
 
   function handelSubmit() {
     setIsUpdating(true)
@@ -73,16 +71,6 @@ function NewCreator() {
                 type='text'
                 onChange={(e) => setAddress(e.target.value)}
                 value={address}
-              />
-            </div>
-            <div className='space-y-1'>
-              <Label htmlFor='payment'>Payment Details(For Withdrawal)</Label>
-              <Input
-                id='payment'
-                placeholder='Payment Details'
-                type='text'
-                onChange={(e) => setPayment(e.target.value)}
-                value={payment}
               />
             </div>
             <div className='space-y-1'>
