@@ -75,6 +75,13 @@ const API = {
     unban: `${API_URL}/user/unban_user`,
     delete: `${API_URL}/user/delete_user`,
   },
+  creators: {
+    get: `${API_URL}/creator/get_creator/all`,
+    add: `${API_URL}/creator/add_creator`,
+    ban: `${API_URL}/creator/ban_creator`,
+    unban: `${API_URL}/creator/unban_creator`,
+    delete: `${API_URL}/creator/delete_creator`,
+  },
   banners: {
     get_all: `${API_URL}/banner/get_banner`,
     create: `${API_URL}/banner/create_banner`,
@@ -84,6 +91,81 @@ const API = {
 export default API
 
 // All API calls
+
+export async function delete_creator_f(id: number): Promise<apiResponse> {
+  try {
+    const headers = authorizedHeader(defaultHeaders)
+    const body = { id }
+    console.log(body)
+    const res = await fetch(API.creators.delete, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(body),
+    })
+    return await returnResponse(res)
+  } catch (err) {
+    return catchError(err)
+  }
+}
+
+export async function unban_creator_f(id: number): Promise<apiResponse> {
+  try {
+    const headers = authorizedHeader(defaultHeaders)
+    const body = { id }
+    console.log(body)
+    const res = await fetch(API.creators.unban, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(body),
+    })
+    return await returnResponse(res)
+  } catch (err) {
+    return catchError(err)
+  }
+}
+
+export async function ban_creator_f(id: number, reasons: string): Promise<apiResponse> {
+  try {
+    const headers = authorizedHeader(defaultHeaders)
+    const body = { id, reasons }
+    console.log(body)
+    const res = await fetch(API.creators.ban, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(body),
+    })
+    return await returnResponse(res)
+  } catch (err) {
+    return catchError(err)
+  }
+}
+
+export async function add_creator_f(body: any): Promise<apiResponse> {
+  try {
+    const headers = authorizedHeader(defaultHeaders)
+    const res = await fetch(API.creators.add, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(body),
+    })
+    return await returnResponse(res)
+  } catch (err) {
+    return catchError(err)
+  }
+}
+
+export async function get_creators_f(url: string): Promise<apiResponse> {
+  try {
+    const headers = authorizedHeader(defaultHeaders)
+    const res = await fetch(url, {
+      method: 'POST',
+      headers,
+    })
+    return await returnResponse(res)
+  } catch (err) {
+    return catchError(err)
+  }
+}
 
 export async function delete_banner_f(id: number): Promise<apiResponse> {
   try {

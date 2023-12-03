@@ -4,7 +4,7 @@ import { PopupAlertType, usePopupAlertContext } from '@/context/PopupAlertContex
 import { create_banner_f, delete_banner_f, get_banners_f } from '@/lib/api'
 import transitions from '@/lib/transition'
 import { userMessage } from '@/lib/types'
-import { Plus, Trash2, Upload } from 'lucide-react'
+import { Plus, Trash2 } from 'lucide-react'
 import { RefObject, useCallback, useEffect, useRef, useState } from 'react'
 
 type Banner = {

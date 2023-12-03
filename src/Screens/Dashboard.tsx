@@ -30,7 +30,7 @@ function Cards() {
   return (
     <div className='space-y-4 px-2'>
       <div>
-        <p className='text-2xl font-bold'>Hi, Welcome back 👋</p>
+        <p className='text-2xl font-bold'>Hello Admin 👋</p>
       </div>
       <div className='flex flex-wrap gap-5  pt-5'>
         <CardCount

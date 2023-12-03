@@ -445,7 +445,8 @@ export default function Users() {
                     checked={column.getIsVisible()}
                     onCheckedChange={(value) => column.toggleVisibility(!!value)}
                   >
-                    {column.id}
+                    {/* {column.id} */}
+                    {column.columnDef.header as string}
                   </DropdownMenuCheckboxItem>
                 )
               })}
