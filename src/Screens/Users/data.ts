@@ -18,7 +18,7 @@ export interface Creator {
   name: string
   email: string
   phone_number: string
-  // channel_logo: string
+  channel_logo: string
   status?: 'banned' | 'regular'
 }
 

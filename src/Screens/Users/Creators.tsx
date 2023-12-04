@@ -513,7 +513,7 @@ function generateOrganizedData(data: ServerResponse[]) {
       channel_name: user.channel_name,
       phone_number: user.phone_number,
       email: user.email,
-      // channel_logo: user.channel_logo,
+      channel_logo: user.channel_logo,
       status: 'regular',
     }
     obj.status = user.user_blocked ? 'banned' : 'regular'
