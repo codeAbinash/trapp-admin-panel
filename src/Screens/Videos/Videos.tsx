@@ -35,7 +35,7 @@ import API, { delete_video_f, get_videos_list_f } from '@/lib/api'
 import transitions from '@/lib/transition'
 import { EyeIcon, ThumbsDown, ThumbsUp, Trash2 } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { NavigateFunction, useNavigate } from 'react-router-dom'
 import { PaginationT, defaultPagination } from './types'
 
 function getReducedString(str: string, len = 30) {
@@ -48,7 +48,7 @@ function formattedDate(date: string) {
   return new Date(date).toLocaleDateString('en-US')
 }
 
-function deleteVideo(id: number, newPopup: (popup: PopupAlertType) => void) {
+function deleteVideo(id: number, newPopup: (popup: PopupAlertType) => void, navigate: NavigateFunction) {
   newPopup({
     title: 'Delete Video',
     subTitle: 'Are you sure you want to delete this video?',
@@ -72,8 +72,15 @@ function deleteVideo(id: number, newPopup: (popup: PopupAlertType) => void) {
           if (!res.status) return transitions(() => newPopup({ title: 'Error', subTitle: res.message }))()
           newPopup({
             title: 'Video Deleted',
-            subTitle: 'Video deleted successfully. Refresh page to see changes.',
-            action: [{ text: 'Close' }, { text: 'Refresh', onClick: () => window.location.reload() }],
+            subTitle: 'Video deleted successfully.',
+            action: [
+              {
+                text: 'OK',
+                onClick: () => {
+                  navigate(0)
+                },
+              },
+            ],
           })
         },
       },
@@ -125,13 +132,6 @@ const columns: ColumnDef<VideoData>[] = [
     ),
   },
   {
-    accessorKey: 'description',
-    header: 'Description',
-    cell: ({ row }) => (
-      <div className='line-clamp-1 max-w-[30ch] font-[450]'>{getReducedString(row.getValue('description'))}</div>
-    ),
-  },
-  {
     accessorKey: 'video_type',
     header: 'Type',
     cell: ({ row }) => <div className='font-[450] capitalize'>{row.getValue('video_type')}</div>,
@@ -161,6 +161,7 @@ const columns: ColumnDef<VideoData>[] = [
     enableHiding: false,
     cell: ({ row }) => {
       const { newPopup } = usePopupAlertContext()
+      const navigate = useNavigate()
 
       return (
         <DropdownMenu>
@@ -177,7 +178,7 @@ const columns: ColumnDef<VideoData>[] = [
             <DropdownMenuItem
               className='text-red-500'
               onClick={() => {
-                deleteVideo(row.getValue('id'), newPopup)
+                deleteVideo(row.getValue('id'), newPopup, navigate)
               }}
             >
               <Trash2 className='mr-2 h-4 w-4' />
@@ -190,7 +191,7 @@ const columns: ColumnDef<VideoData>[] = [
   },
 ]
 
-export default function Creators() {
+export default function Videos() {
   const [sorting, setSorting] = useState<SortingState>([])
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
@@ -198,7 +199,6 @@ export default function Creators() {
   const [videos, setVideos] = useState<VideoData[] | null>(null)
   const [pagination, setPagination] = useState<PaginationT>(defaultPagination)
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const navigate = useNavigate()
 
   useEffect(() => {
     loadVideos()
@@ -241,7 +241,7 @@ export default function Creators() {
   })
 
   return (
-    <div className='w-full whitespace-pre'>
+    <div className='w-full whitespace-pre pb-10'>
       <p className='text-2xl font-bold'>Video List 🎥</p>
 
       <div className='flex items-center gap-2 py-4'>
