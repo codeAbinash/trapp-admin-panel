@@ -340,7 +340,7 @@ function DeleteCreator({
     <Dialog open={open}>
       <DialogContent className='sm:max-w-[400px]'>
         <DialogHeader>
-          <DialogTitle>Ban this Creator?</DialogTitle>
+          <DialogTitle>Delete this Creator?</DialogTitle>
           <DialogDescription>
             Are you sure you want to delete this creator(User Id <span className='font-[500]'>{id}</span>)? This action
             cannot be undone.

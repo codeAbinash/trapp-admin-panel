@@ -138,7 +138,7 @@ function DeleteUser({
     <Dialog open={open}>
       <DialogContent className='sm:max-w-[400px]'>
         <DialogHeader>
-          <DialogTitle>Ban this user?</DialogTitle>
+          <DialogTitle>Delete this user?</DialogTitle>
           <DialogDescription>
             Are you sure you want to delete this user(User Id <span className='font-[500]'>{id}</span>)? This action
             cannot be undone.
