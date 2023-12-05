@@ -18,6 +18,7 @@ import Banners from './Screens/Banners/Banners.tsx'
 import Creators from './Screens/Users/Creators.tsx'
 import Code from './Screens/Code/Code.tsx'
 import NewCreator from './Screens/NewCreator.tsx'
+import Videos from './Screens/Videos/Videos.tsx'
 
 const router = createBrowserRouter([
   {
@@ -46,7 +47,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/videos',
-        element: <div>Videos</div>,
+        element: <Videos />,
       },
       {
         path: '/price_management',

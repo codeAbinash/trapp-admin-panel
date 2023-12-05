@@ -87,10 +87,41 @@ const API = {
     create: `${API_URL}/banner/create_banner`,
     delete: `${API_URL}/banner/delete`,
   },
+  videos: {
+    list: `${API_URL}/video/video_list`,
+    delete: `${API_URL}/video/delete`,
+  },
 }
 export default API
 
 // All API calls
+
+export async function delete_video_f(id: number): Promise<apiResponse> {
+  try {
+    const headers = authorizedHeader(defaultHeaders)
+    const res = await fetch(API.videos.delete, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({ id }),
+    })
+    return await returnResponse(res)
+  } catch (err) {
+    return catchError(err)
+  }
+}
+
+export async function get_videos_list_f(url = API.videos.list): Promise<apiResponse> {
+  try {
+    const headers = authorizedHeader(defaultHeaders)
+    const res = await fetch(url, {
+      method: 'POST',
+      headers,
+    })
+    return await returnResponse(res)
+  } catch (err) {
+    return catchError(err)
+  }
+}
 
 export async function delete_creator_f(id: number): Promise<apiResponse> {
   try {
