@@ -27,7 +27,7 @@ export default function BanUser({
     setOpen(false)
     newPopup({
       title: 'User Banned',
-      subTitle: `User with id ${id} has been banned. Refresh the page to see the changes.`,
+      subTitle: res.message,
     })
   }
   return (

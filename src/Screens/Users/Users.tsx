@@ -66,7 +66,7 @@ function BanUser({
     setOpen(false)
     newPopup({
       title: 'User Banned',
-      subTitle: `User with id ${id} has been banned. Refresh the page to see the changes.`,
+      subTitle: res.message,
     })
   }
   return (
@@ -131,7 +131,7 @@ function DeleteUser({
     setOpen(false)
     newPopup({
       title: 'User Deleted',
-      subTitle: `User with id ${id} has been deleted. Refresh the page to see the changes.`,
+      subTitle: res.message,
     })
   }
   return (
@@ -185,7 +185,7 @@ function UnBanUser({
     setOpen(false)
     newPopup({
       title: 'User Unbanned',
-      subTitle: `User with id ${id} has been unbanned. Refresh the page to see the changes.`,
+      subTitle: res.message,
     })
   }
   return (

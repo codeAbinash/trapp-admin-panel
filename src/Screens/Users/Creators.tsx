@@ -333,7 +333,7 @@ function DeleteCreator({
     setOpen(false)
     newPopup({
       title: 'User Deleted',
-      subTitle: `User with id ${id} has been deleted. Refresh the page to see the changes.`,
+      subTitle: res.message,
     })
   }
   return (
@@ -386,7 +386,7 @@ function UnBanCreator({
     setOpen(false)
     newPopup({
       title: 'User Unbanned',
-      subTitle: `User with id ${id} has been unbanned. Refresh the page to see the changes.`,
+      subTitle: res.message,
     })
   }
   return (
@@ -440,7 +440,7 @@ function BanCreator({
     setOpen(false)
     newPopup({
       title: 'Creator Banned',
-      subTitle: `Creator with id ${id} has been banned. Refresh the page to see the changes.`,
+      subTitle: res.message,
     })
   }
   return (

@@ -165,7 +165,7 @@ function addNewBannerFn(
             transitions(() =>
               newPopup({
                 title: 'Banner Uploaded',
-                subTitle: `Banner has been uploaded.`,
+                subTitle: res.message,
               }),
             )()
             loadBanners()
@@ -222,7 +222,7 @@ async function deleteBannerFn(id: number, newPopup: (popup: PopupAlertType) => v
             transitions(() =>
               newPopup({
                 title: 'Banner Deleted',
-                subTitle: `Banner has been deleted.`,
+                subTitle: res.message,
               }),
             )()
             loadBanners()
