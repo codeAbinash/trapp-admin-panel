@@ -31,6 +31,7 @@ import ls from '@/lib/ls'
 import { UserProfile } from '@/lib/types'
 import { DEFAULT_PP } from '@/constants'
 import store from '@/Redux/store'
+import transitions from '@/lib/transition'
 
 export function LogoutPopupButton() {
   const navigate = useNavigate()
@@ -157,7 +158,7 @@ function OptionItem({
 }) {
   return (
     <button
-      onClick={() => navigate(path)}
+      onClick={transitions(() => navigate(path))}
       className={`flex items-center gap-3 rounded-md text-left ${
         path === currentPath ? 'bg-main bg-opacity-10' : 'halka-bg-hover'
       }`}
