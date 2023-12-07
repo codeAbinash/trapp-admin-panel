@@ -17,10 +17,15 @@ function Cards() {
     const res = await get_counts_f()
     if (!res.status) return
     const data: DashboardCounts = res.data.dash_counts
-    increaseCount(data?.creators || 0, setCountCreators)
-    increaseCount(data?.live || 0, setCountLive)
-    increaseCount(data?.users || 0, setCountUsers)
-    increaseCount(data?.videos || 0, setCountVideos)
+    // increaseCount(data?.creators || 0, setCountCreators)
+    // increaseCount(data?.live || 0, setCountLive)
+    // increaseCount(data?.users || 0, setCountUsers)
+    // increaseCount(data?.videos || 0, setCountVideos)
+    // console.log(data)
+    setCountCreators(data?.creators || 0)
+    setCountLive(data?.live || 0)
+    setCountUsers(data?.users || 0)
+    setCountVideos(data?.videos || 0)
   }, [setCountCreators, setCountLive, setCountUsers, setCountVideos])
 
   useEffect(() => {
