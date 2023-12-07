@@ -106,6 +106,7 @@ export interface VideoData {
   created_at: string
   updated_at: string
   details: JSX.Element
+  channel_name: string
 }
 const columns: ColumnDef<VideoData>[] = [
   {
@@ -152,9 +153,9 @@ const columns: ColumnDef<VideoData>[] = [
     cell: ({ row }) => <div className='font-[450]'>{row.getValue('id')}</div>,
   },
   {
-    accessorKey: 'creator_id',
-    header: 'Creator ID',
-    cell: ({ row }) => <div className='font-[450]'>{row.getValue('creator_id')}</div>,
+    accessorKey: 'channel_name',
+    header: 'Channel Name',
+    cell: ({ row }) => <div className='font-[450]'>{row.getValue('channel_name')}</div>,
   },
   {
     id: 'actions',
@@ -342,6 +343,9 @@ export interface ServerResponse {
   views: number
   likes: number
   dislikes: number
+  creator: {
+    channel_name: string
+  }
 }
 
 function generateOrganizedData(data: ServerResponse[]) {
@@ -357,6 +361,7 @@ function generateOrganizedData(data: ServerResponse[]) {
       video_type: user.video_type,
       created_at: user.created_at,
       updated_at: user.updated_at,
+      channel_name: user.creator.channel_name,
       details: (
         <div className='flex gap-5'>
           <div className='flex flex-col items-center justify-center'>
