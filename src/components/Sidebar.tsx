@@ -169,7 +169,7 @@ function OptionItem({
         } `}
       >
         <SideIcon className='h-[1.35rem]' />
-        <span>{name}</span>
+        <span>{name || ''}</span>
       </div>
     </button>
   )
