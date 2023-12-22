@@ -10,11 +10,11 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { usePopupAlertContext } from '@/context/PopupAlertContext'
 import API, { authorizedHeader, formDataHeaders, getError, get_profile_f } from '@/lib/api'
-import { UserProfile, userMessage } from '@/lib/types'
-import { delayFn } from '@/lib/utils'
+import transitions from '@/lib/transition'
+import { UserProfile } from '@/lib/types'
+import { delayFn, profilePicFileValidation } from '@/lib/utils'
 import { Pencil } from 'lucide-react'
 import { useCallback, useEffect, useRef, useState } from 'react'
-import transitions from '@/lib/transition'
 
 function EditProfile() {
   return (
@@ -229,23 +229,6 @@ function ChangePassword() {
       </CardFooter>
     </div>
   )
-}
-
-function profilePicFileValidation(file: File | undefined | null): userMessage {
-  const allowedTypes = ['image/png', 'image/jpeg', 'image/jpg']
-  const maxSize = 2 * 1024 * 1024
-  console.log(file)
-  if (file && !allowedTypes.includes(file.type))
-    return {
-      message: 'Invalid file type (only .png, .jpeg, .jpg)',
-      error: true,
-    }
-  if (file && file.size > maxSize)
-    return {
-      message: 'Max File Size is 2MB',
-      error: true,
-    }
-  return { message: '', error: false }
 }
 
 export default EditProfile

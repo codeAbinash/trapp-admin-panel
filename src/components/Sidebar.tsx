@@ -10,6 +10,8 @@ import {
   Code,
   GalleryHorizontal,
   Gem,
+  LayoutGrid,
+  LayoutGridIcon,
   LogOut,
   LucideIcon,
   User2,
@@ -124,6 +126,7 @@ function Options({ path, navigate }: { path: string; navigate: NavigateFunction 
       <OptionItem navigate={navigate} path='/users' currentPath={path} name='Users' SideIcon={User2} />
       <OptionItem navigate={navigate} path='/creators' currentPath={path} name='Creators' SideIcon={Brush} />
       <OptionItem navigate={navigate} path='/videos' currentPath={path} name='Videos' SideIcon={Video} />
+      <OptionItem navigate={navigate} path='/categories' currentPath={path} name='Categories' SideIcon={LayoutGrid} />
       <OptionItem
         navigate={navigate}
         path='/price_management'

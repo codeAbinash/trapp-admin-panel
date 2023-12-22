@@ -19,6 +19,7 @@ import Creators from './Screens/Users/Creators.tsx'
 import Code from './Screens/Code/Code.tsx'
 import NewCreator from './Screens/NewCreator.tsx'
 import Videos from './Screens/Videos/Videos.tsx'
+import Categories from './Screens/Categories/Categories.tsx'
 
 const router = createBrowserRouter([
   {
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
       {
         path: '/banners',
         element: <Banners />,
+      },
+      {
+        path: '/categories',
+        element: <Categories />,
       },
       {
         path: '/code',

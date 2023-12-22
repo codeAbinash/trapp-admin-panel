@@ -91,10 +91,71 @@ const API = {
     list: `${API_URL}/video/video_list`,
     delete: `${API_URL}/video/delete`,
   },
+  categories: {
+    create: `${API_URL}/video/create_cat`,
+    all: `${API_URL}/video/cat_list`,
+    edit: `${API_URL}/video/cat_edit`,
+    delete: `${API_URL}/video/cat_delete`,
+  },
 }
 export default API
 
 // All API calls
+
+export async function delete_category_f(cat_id: number): Promise<apiResponse> {
+  try {
+    const headers = authorizedHeader(defaultHeaders)
+    const res = await fetch(API.categories.delete, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({ cat_id }),
+    })
+    return await returnResponse(res)
+  } catch (err) {
+    return catchError(err)
+  }
+}
+
+export async function edit_category_f(cat_id: number, title: string): Promise<apiResponse> {
+  try {
+    const headers = authorizedHeader(defaultHeaders)
+    const res = await fetch(API.categories.edit, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({ cat_id, title }),
+    })
+    return await returnResponse(res)
+  } catch (err) {
+    return catchError(err)
+  }
+}
+
+export async function get_categories_f(): Promise<apiResponse> {
+  try {
+    const headers = authorizedHeader(defaultHeaders)
+    const res = await fetch(API.categories.all, {
+      method: 'POST',
+      headers,
+    })
+    return await returnResponse(res)
+  } catch (err) {
+    return catchError(err)
+  }
+}
+
+export async function create_category_f(body: any): Promise<apiResponse> {
+  try {
+    const headers = authorizedHeader(defaultHeaders)
+    const res = await fetch(API.categories.create, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(body),
+    })
+    return await returnResponse(res)
+  } catch (err) {
+    return catchError(err)
+  }
+}
 
 export async function delete_video_f(id: number): Promise<apiResponse> {
   try {
