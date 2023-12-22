@@ -1,5 +1,7 @@
 import { type ClassValue, clsx } from 'clsx'
 import { twMerge } from 'tailwind-merge'
+import { userMessage } from './types'
+import { MB } from './constants'
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -57,4 +59,21 @@ export function getSubscriptionColor(subscription: 'expired' | 'active' | 'trial
     default:
       return 'bg-transparent'
   }
+}
+
+export function profilePicFileValidation(file: File | undefined | null, size: number = 2 * MB): userMessage {
+  const allowedTypes = ['image/png', 'image/jpeg', 'image/jpg']
+  const maxSize = size
+  console.log(file)
+  if (file && !allowedTypes.includes(file.type))
+    return {
+      message: 'Invalid file type (only .png, .jpeg, .jpg)',
+      error: true,
+    }
+  if (file && file.size > maxSize)
+    return {
+      message: 'Max File Size is 2MB',
+      error: true,
+    }
+  return { message: '', error: false }
 }

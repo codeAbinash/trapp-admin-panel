@@ -3,7 +3,7 @@ import TapMotion from '@/components/TapMotion'
 import { PopupAlertType, usePopupAlertContext } from '@/context/PopupAlertContext'
 import { create_banner_f, delete_banner_f, get_banners_f } from '@/lib/api'
 import transitions from '@/lib/transition'
-import { userMessage } from '@/lib/types'
+import { profilePicFileValidation } from '@/lib/utils'
 import { Plus, Trash2 } from 'lucide-react'
 import { RefObject, useCallback, useEffect, useRef, useState } from 'react'
 
@@ -174,23 +174,6 @@ function addNewBannerFn(
       ],
     })
   })()
-}
-
-function profilePicFileValidation(file: File | undefined | null): userMessage {
-  const allowedTypes = ['image/png', 'image/jpeg', 'image/jpg']
-  const maxSize = 2 * 1024 * 1024
-  console.log(file)
-  if (file && !allowedTypes.includes(file.type))
-    return {
-      message: 'Invalid file type (only .png, .jpeg, .jpg)',
-      error: true,
-    }
-  if (file && file.size > maxSize)
-    return {
-      message: 'Max File Size is 2MB',
-      error: true,
-    }
-  return { message: '', error: false }
 }
 
 async function deleteBannerFn(id: number, newPopup: (popup: PopupAlertType) => void, loadBanners: () => void) {
