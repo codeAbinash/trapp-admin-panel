@@ -143,13 +143,13 @@ export async function get_categories_f(): Promise<apiResponse> {
   }
 }
 
-export async function create_category_f(body: any): Promise<apiResponse> {
+export async function create_category_f(body: FormData): Promise<apiResponse> {
   try {
-    const headers = authorizedHeader(defaultHeaders)
+    const headers = authorizedHeader(formDataHeaders)
     const res = await fetch(API.categories.create, {
       method: 'POST',
       headers,
-      body: JSON.stringify(body),
+      body,
     })
     return await returnResponse(res)
   } catch (err) {
