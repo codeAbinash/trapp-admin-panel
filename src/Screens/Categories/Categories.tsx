@@ -4,7 +4,7 @@ import { PopupAlertType, usePopupAlertContext } from '@/context/PopupAlertContex
 import { create_category_f, delete_category_f, edit_category_f, get_categories_f } from '@/lib/api'
 import { KB } from '@/lib/constants'
 import transitions from '@/lib/transition'
-import { profilePicFileValidation } from '@/lib/utils'
+import { picFileValidation } from '@/lib/utils'
 import { CheckIcon, ImageIcon, ImagePlus, PencilIcon, Trash2Icon } from 'lucide-react'
 import { useCallback, useEffect, useRef, useState } from 'react'
 
@@ -63,7 +63,7 @@ function AddNewCategory({ loadAllCategories }: { loadAllCategories: () => Promis
 
   const onChangeFileSelect = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const fileInput = e.target.files
-    const ppValidation = profilePicFileValidation(pic.current!.files![0], 512 * KB)
+    const ppValidation = picFileValidation(pic.current!.files![0], 512 * KB)
     if (ppValidation.error) {
       newPopup({ title: 'Invalid File', subTitle: ppValidation.message })
       pic.current!.value = ''

@@ -12,7 +12,7 @@ import { usePopupAlertContext } from '@/context/PopupAlertContext'
 import API, { authorizedHeader, formDataHeaders, getError, get_profile_f } from '@/lib/api'
 import transitions from '@/lib/transition'
 import { UserProfile } from '@/lib/types'
-import { delayFn, profilePicFileValidation } from '@/lib/utils'
+import { delayFn, picFileValidation } from '@/lib/utils'
 import { Pencil } from 'lucide-react'
 import { useCallback, useEffect, useRef, useState } from 'react'
 
@@ -81,7 +81,7 @@ function ChangePassword() {
   const onChangeFileSelect = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const fileInput = e.target.files
-      const ppValidation = profilePicFileValidation(fileInput![0])
+      const ppValidation = picFileValidation(fileInput![0])
       if (ppValidation.error) return newPopup({ title: 'Invalid File', subTitle: ppValidation.message })
       setProfilePicture(URL.createObjectURL(fileInput![0]))
     },
@@ -105,7 +105,7 @@ function ChangePassword() {
       if (pass1) body.password = pass1.trim()
 
       if (profilePicture !== userProfile?.profile_pic) {
-        const ppValidation = profilePicFileValidation(pp.current!.files![0])
+        const ppValidation = picFileValidation(pp.current!.files![0])
         if (ppValidation.error) {
           newPopup({ title: 'Invalid File', subTitle: ppValidation.message })
           setIsUpdating(false)

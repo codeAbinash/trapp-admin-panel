@@ -3,7 +3,7 @@ import TapMotion from '@/components/TapMotion'
 import { PopupAlertType, usePopupAlertContext } from '@/context/PopupAlertContext'
 import { create_banner_f, delete_banner_f, get_banners_f } from '@/lib/api'
 import transitions from '@/lib/transition'
-import { profilePicFileValidation } from '@/lib/utils'
+import { picFileValidation } from '@/lib/utils'
 import { Plus, Trash2 } from 'lucide-react'
 import { RefObject, useCallback, useEffect, useRef, useState } from 'react'
 
@@ -74,7 +74,7 @@ function AddNewBanner({ loadBanners }: { loadBanners: () => void }) {
   const pp = useRef<HTMLInputElement>(null)
   const onChangeFileSelect = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const fileInput = e.target.files
-    const ppValidation = profilePicFileValidation(pp.current!.files![0])
+    const ppValidation = picFileValidation(pp.current!.files![0])
     if (ppValidation.error) {
       newPopup({ title: 'Invalid File', subTitle: ppValidation.message })
       pp.current!.value = ''
