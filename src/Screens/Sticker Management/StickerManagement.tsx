@@ -1,3 +1,4 @@
+import Coin from '@/components/Coin'
 import { Loading } from '@/components/Loading'
 import TapMotion from '@/components/TapMotion'
 import { Button } from '@/components/ui/button'
@@ -63,7 +64,10 @@ function Stickers() {
             </TapMotion>
           </div>
           <img src={sticker.sticker_src} alt='' className='h-36 w-36 object-contain' />
-          <p className='text-lg font-semibold'>${sticker.price}</p>
+          <div className='flex items-center justify-center gap-3 text-lg font-semibold'>
+            <Coin />
+            {sticker.price}
+          </div>
         </div>
       ))}
     </div>
