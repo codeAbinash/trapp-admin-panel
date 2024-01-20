@@ -61,9 +61,15 @@ export function getSubscriptionColor(subscription: 'expired' | 'active' | 'trial
   }
 }
 
-export function picFileValidation(file: File | undefined | null, size: number = 2 * MB): userMessage {
+export function picFileValidation(
+  file: File | undefined | null,
+  size: number = 2 * MB,
+  sizeInText = '2MB',
+): userMessage {
   const allowedTypes = ['image/png', 'image/jpeg', 'image/jpg']
   const maxSize = size
+  console.log(file?.size)
+  console.log(maxSize)
   console.log(file)
   if (file && !allowedTypes.includes(file.type))
     return {
@@ -72,7 +78,7 @@ export function picFileValidation(file: File | undefined | null, size: number = 
     }
   if (file && file.size > maxSize)
     return {
-      message: 'Max File Size is 2MB',
+      message: `Max File Size is ${sizeInText}`,
       error: true,
     }
   return { message: '', error: false }

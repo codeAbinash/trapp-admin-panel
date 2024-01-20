@@ -1,3 +1,4 @@
+import exp from 'constants'
 import { app } from '../constants'
 import ls from './ls'
 
@@ -97,10 +98,58 @@ const API = {
     edit: `${API_URL}/video/cat_edit`,
     delete: `${API_URL}/video/cat_delete`,
   },
+  stickers: {
+    create: `${API_URL}/sticker/create`,
+    list: `${API_URL}/sticker/list`,
+    delete: `${API_URL}/sticker/delete`,
+  },
 }
 export default API
 
 // All API calls
+
+export async function get_stickers_f(): Promise<apiResponse> {
+  try {
+    const headers = authorizedHeader(defaultHeaders)
+    const res = await fetch(API.stickers.list, {
+      method: 'POST',
+      headers,
+    })
+    return await returnResponse(res)
+  } catch (err) {
+    return catchError(err)
+  }
+}
+
+export async function delete_sticker_f(sticker_id: number): Promise<apiResponse> {
+  try {
+    const headers = authorizedHeader(defaultHeaders)
+    const body = { sticker_id }
+    console.log(body)
+    const res = await fetch(API.stickers.delete, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(body),
+    })
+    return await returnResponse(res)
+  } catch (err) {
+    return catchError(err)
+  }
+}
+
+export async function create_sticker_f(body: FormData): Promise<apiResponse> {
+  try {
+    const headers = authorizedHeader(formDataHeaders)
+    const res = await fetch(API.stickers.create, {
+      method: 'POST',
+      headers,
+      body,
+    })
+    return await returnResponse(res)
+  } catch (err) {
+    return catchError(err)
+  }
+}
 
 export async function delete_category_f(cat_id: number): Promise<apiResponse> {
   try {
