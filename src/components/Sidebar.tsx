@@ -1,6 +1,6 @@
+import { useSelector } from 'react-redux'
 import { NavigateFunction, useLocation, useNavigate } from 'react-router-dom'
 import { Button } from './ui/button'
-import { useSelector } from 'react-redux'
 
 import {
   AreaChart,
@@ -11,13 +11,14 @@ import {
   GalleryHorizontal,
   Gem,
   LayoutGrid,
-  LayoutGridIcon,
   LogOut,
   LucideIcon,
+  StickerIcon,
   User2,
   Video,
 } from 'lucide-react'
 
+import store from '@/Redux/store'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -29,11 +30,10 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
-import ls from '@/lib/ls'
-import { UserProfile } from '@/lib/types'
 import { DEFAULT_PP } from '@/constants'
-import store from '@/Redux/store'
+import ls from '@/lib/ls'
 import transitions from '@/lib/transition'
+import { UserProfile } from '@/lib/types'
 
 export function LogoutPopupButton() {
   const navigate = useNavigate()
@@ -127,6 +127,13 @@ function Options({ path, navigate }: { path: string; navigate: NavigateFunction 
       <OptionItem navigate={navigate} path='/creators' currentPath={path} name='Creators' SideIcon={Brush} />
       <OptionItem navigate={navigate} path='/videos' currentPath={path} name='Videos' SideIcon={Video} />
       <OptionItem navigate={navigate} path='/categories' currentPath={path} name='Categories' SideIcon={LayoutGrid} />
+      <OptionItem
+        navigate={navigate}
+        path='/sticker_management'
+        currentPath={path}
+        name='Sticker Management'
+        SideIcon={StickerIcon}
+      />
       <OptionItem
         navigate={navigate}
         path='/price_management'
