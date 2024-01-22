@@ -63,14 +63,11 @@ export function getSubscriptionColor(subscription: 'expired' | 'active' | 'trial
 
 export function picFileValidation(
   file: File | undefined | null,
-  size: number = 2 * MB,
-  sizeInText = '2MB',
+  size: number = 1 * MB,
+  sizeInText = '1MB',
 ): userMessage {
   const allowedTypes = ['image/png', 'image/jpeg', 'image/jpg']
   const maxSize = size
-  console.log(file?.size)
-  console.log(maxSize)
-  console.log(file)
   if (file && !allowedTypes.includes(file.type))
     return {
       message: 'Invalid file type (only .png, .jpeg, .jpg)',
