@@ -69,32 +69,21 @@ export function UserCard() {
   const navigate = useNavigate()
   const userProfile: UserProfile = useSelector((state: ReturnType<typeof store.getState>) => state.profile)
   return (
-    <div
-      className='halka-bg tap97 flex w-full cursor-pointer items-center gap-4 rounded-xl p-4 px-5'
-      onClick={() => navigate('/edit_profile')}
-    >
+    <div className='halka-bg tap97 flex w-full cursor-pointer items-center gap-4 rounded-xl p-4 px-5' onClick={() => navigate('/edit_profile')}>
       <img src={userProfile?.profile_pic ?? DEFAULT_PP} className='h-10 w-10 rounded-full' />
       <p className='text-sm font-semibold'>{userProfile?.name || 'Loading...'}</p>
     </div>
   )
 }
 
-export default function Sidebar({
-  show,
-  setShow,
-}: {
-  show: boolean
-  setShow: React.Dispatch<React.SetStateAction<boolean>>
-}) {
+export default function Sidebar({ show, setShow }: { show: boolean; setShow: React.Dispatch<React.SetStateAction<boolean>> }) {
   const navigate = useNavigate()
   const location = useLocation()
   // console.log(location.pathname)
   return (
     <>
       <div
-        className={`fixed left-0 top-0 z-10 h-full w-full bg-black bg-opacity-50 backdrop-blur-sm ${
-          show ? 'block xl:hidden' : 'hidden'
-        }`}
+        className={`fixed left-0 top-0 z-10 h-full w-full bg-black bg-opacity-50 backdrop-blur-sm ${show ? 'block xl:hidden' : 'hidden'}`}
         onClick={() => setShow(false)}
       ></div>
       <div
@@ -127,27 +116,9 @@ function Options({ path, navigate }: { path: string; navigate: NavigateFunction 
       <OptionItem navigate={navigate} path='/creators' currentPath={path} name='Creators' SideIcon={Brush} />
       <OptionItem navigate={navigate} path='/videos' currentPath={path} name='Videos' SideIcon={Video} />
       <OptionItem navigate={navigate} path='/categories' currentPath={path} name='Categories' SideIcon={LayoutGrid} />
-      <OptionItem
-        navigate={navigate}
-        path='/sticker_management'
-        currentPath={path}
-        name='Sticker Management'
-        SideIcon={StickerIcon}
-      />
-      <OptionItem
-        navigate={navigate}
-        path='/price_management'
-        currentPath={path}
-        name='Price Management'
-        SideIcon={Gem}
-      />
-      <OptionItem
-        navigate={navigate}
-        path='/creator_withdraw'
-        currentPath={path}
-        name='Creator Withdraw'
-        SideIcon={BadgePercent}
-      />
+      <OptionItem navigate={navigate} path='/sticker_management' currentPath={path} name='Sticker Management' SideIcon={StickerIcon} />
+      <OptionItem navigate={navigate} path='/price_management' currentPath={path} name='Price Management' SideIcon={Gem} />
+      <OptionItem navigate={navigate} path='/creator_withdraw' currentPath={path} name='Creator Withdraw' SideIcon={BadgePercent} />
       <OptionItem navigate={navigate} path='/code' currentPath={path} name='Code' SideIcon={Code} />
     </div>
   )
@@ -169,9 +140,7 @@ function OptionItem({
   return (
     <button
       onClick={transitions(() => navigate(path))}
-      className={`flex items-center gap-3 rounded-md text-left ${
-        path === currentPath ? 'bg-main bg-opacity-10' : 'halka-bg-hover'
-      }`}
+      className={`flex items-center gap-3 rounded-md text-left ${path === currentPath ? 'bg-main bg-opacity-10' : 'halka-bg-hover'}`}
     >
       <div
         className={`flex items-center justify-between gap-3 p-3 px-4 text-sm font-medium ${

@@ -49,10 +49,7 @@ function Stickers() {
         </>
       )}
       {stickers?.map((sticker) => (
-        <div
-          className='group relative flex flex-col items-center justify-center gap-4 rounded-md px-4'
-          key={sticker.id}
-        >
+        <div className='group relative flex flex-col items-center justify-center gap-4 rounded-md px-4' key={sticker.id}>
           <div
             className='tap95 absolute right-2 top-2 cursor-pointer rounded-full bg-white/80 p-2.5 opacity-0 backdrop-blur-md transition duration-300 ease-in-out group-hover:opacity-100 dark:bg-black/50'
             onClick={() => {
@@ -125,11 +122,7 @@ function NewStickerPopupUI({
       <img src={f == null ? '' : URL.createObjectURL(f[0])} className='mx-auto h-36 w-36 object-contain' alt='' />
       <Input placeholder='Sticker Name' className='mt-5' value={title} onChange={(e) => setTitle(e.target.value)} />
       <Input placeholder='Sticker Price' type='number' value={price} onChange={(e) => setPrice(e.target.value)} />
-      <Button
-        className='mt-2'
-        onClick={uploadSticker}
-        disabled={isLoading || !title.trim() || !price.trim() || !pic.current?.files![0]}
-      >
+      <Button className='mt-2' onClick={uploadSticker} disabled={isLoading || !title.trim() || !price.trim() || !pic.current?.files![0]}>
         {isLoading && <Loading />}
         {isLoading ? 'Creating Sticker' : 'Create Sticker'}
       </Button>
@@ -169,13 +162,7 @@ function CreateSticker({ loadStickers }: { loadStickers: () => Promise<void> }) 
       >
         <ImagePlusIcon className='h-7 w-7 rounded-lg opacity-80' />
       </TapMotion>
-      <input
-        type='file'
-        className='hidden'
-        ref={pic}
-        onChange={onChangeFileSelect}
-        accept='image/png, image/jpeg, image/jpg'
-      />
+      <input type='file' className='hidden' ref={pic} onChange={onChangeFileSelect} accept='image/png, image/jpeg, image/jpg' />
       <p>New Sticker</p>
     </div>
   )

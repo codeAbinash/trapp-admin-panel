@@ -67,23 +67,11 @@ function NewCreator() {
           <CardContent className='space-y-2'>
             <div className='space-y-1'>
               <Label htmlFor='f-name'>First Name</Label>
-              <Input
-                id='f-name'
-                placeholder='Enter first name'
-                type='text'
-                onChange={(e) => setFirst_name(e.target.value)}
-                value={first_name}
-              />
+              <Input id='f-name' placeholder='Enter first name' type='text' onChange={(e) => setFirst_name(e.target.value)} value={first_name} />
             </div>
             <div className='space-y-1'>
               <Label htmlFor='l-name'>Last Name</Label>
-              <Input
-                id='l-name'
-                placeholder='Enter last name'
-                type='text'
-                onChange={(e) => setLast_name(e.target.value)}
-                value={last_name}
-              />
+              <Input id='l-name' placeholder='Enter last name' type='text' onChange={(e) => setLast_name(e.target.value)} value={last_name} />
             </div>
 
             <div className='space-y-1'>
@@ -99,23 +87,11 @@ function NewCreator() {
 
             <div className='space-y-1'>
               <Label htmlFor='tel'>Contact Number</Label>
-              <Input
-                id='tel'
-                placeholder='e.g. 9876543210'
-                type='tel'
-                onChange={(e) => setPhone(e.target.value)}
-                value={phone}
-              />
+              <Input id='tel' placeholder='e.g. 9876543210' type='tel' onChange={(e) => setPhone(e.target.value)} value={phone} />
             </div>
             <div className='space-y-1'>
               <Label htmlFor='email'>Contact Email</Label>
-              <Input
-                id='email'
-                placeholder='e.g. helloworld@gmail.com'
-                type='email'
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
-              />
+              <Input id='email' placeholder='e.g. helloworld@gmail.com' type='email' onChange={(e) => setEmail(e.target.value)} value={email} />
             </div>
             <div className='space-y-1'>
               <Label htmlFor='address'>Contact Address</Label>
@@ -129,13 +105,7 @@ function NewCreator() {
             </div>
             <div className='space-y-1'>
               <Label htmlFor='pass1'>Password</Label>
-              <Input
-                id='pass1'
-                placeholder='Enter password'
-                type='password'
-                onChange={(e) => setPass1(e.target.value)}
-                value={pass1}
-              />
+              <Input id='pass1' placeholder='Enter password' type='password' onChange={(e) => setPass1(e.target.value)} value={pass1} />
             </div>
             {/* <div className='space-y-1'>
               <Label htmlFor='pass2'>Confirm Password</Label>

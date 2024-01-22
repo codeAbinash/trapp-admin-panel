@@ -53,8 +53,7 @@ export default function PopupAlert() {
             <button
               key={index}
               className={
-                action.className +
-                'highlight-none tap97 font-normMid w-full flex-grow rounded-lg  bg-black/5 py-3.5 font-medium dark:bg-white/5'
+                action.className + 'highlight-none tap97 font-normMid w-full flex-grow rounded-lg  bg-black/5 py-3.5 font-medium dark:bg-white/5'
               }
               onClick={() => {
                 transitions(removePopup, 0)()

@@ -128,11 +128,7 @@ function AddNewCategory({ loadAllCategories }: { loadAllCategories: () => Promis
               <Loading />
             </div>
           ) : (
-            <TapMotion
-              size='md'
-              className='tap99 rounded-full bg-green-500/20 p-2.5 text-green-500'
-              onClick={addCategory}
-            >
+            <TapMotion size='md' className='tap99 rounded-full bg-green-500/20 p-2.5 text-green-500' onClick={addCategory}>
               <CheckIcon className='h-4 w-4' strokeWidth={3} />
             </TapMotion>
           )}
@@ -221,29 +217,17 @@ function Category({ category }: { category: Category }) {
                 <Loading />
               </div>
             ) : (
-              <TapMotion
-                size='md'
-                className='tap99 rounded-full bg-green-500/20 p-2.5 text-green-500'
-                onClick={updateCategory}
-              >
+              <TapMotion size='md' className='tap99 rounded-full bg-green-500/20 p-2.5 text-green-500' onClick={updateCategory}>
                 <CheckIcon className='h-4 w-4' strokeWidth={3} />
               </TapMotion>
             )
           ) : (
             <>
-              <TapMotion
-                size='md'
-                className='tap99 rounded-full bg-green-500/20 p-2.5 text-green-500'
-                onClick={() => setEdit(true)}
-              >
+              <TapMotion size='md' className='tap99 rounded-full bg-green-500/20 p-2.5 text-green-500' onClick={() => setEdit(true)}>
                 <PencilIcon className='h-4 w-4' />
               </TapMotion>
 
-              <TapMotion
-                size='md'
-                className='tap99 rounded-full bg-red-500/20 p-2.5 text-red-500'
-                onClick={() => deleteCategory(category, newPopup)}
-              >
+              <TapMotion size='md' className='tap99 rounded-full bg-red-500/20 p-2.5 text-red-500' onClick={() => deleteCategory(category, newPopup)}>
                 <Trash2Icon className='h-4 w-4' />
               </TapMotion>
             </>
@@ -257,10 +241,7 @@ function Category({ category }: { category: Category }) {
 function CategoryShimmer() {
   return (
     <div className='halka-bg shimmer flex w-full max-w-sm items-center gap-4 rounded-xl p-3'>
-      <TapMotion
-        size='lg'
-        className='halka-bg flex h-16 w-16 flex-none cursor-pointer items-center justify-center rounded-lg'
-      >
+      <TapMotion size='lg' className='halka-bg flex h-16 w-16 flex-none cursor-pointer items-center justify-center rounded-lg'>
         <ImageIcon className='h-5 w-5 rounded-lg opacity-80' />
       </TapMotion>
       <div className='flex w-full justify-between gap-3'>

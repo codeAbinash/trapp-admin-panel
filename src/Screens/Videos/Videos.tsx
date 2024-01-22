@@ -113,11 +113,7 @@ const columns: ColumnDef<VideoData>[] = [
     accessorKey: 'thumbnail',
     header: 'Thumbnail',
     cell: ({ row }) => (
-      <img
-        src={row.getValue('thumbnail') ?? DEFAULT_PP}
-        className='aspect-video h-[4.5rem] w-[8rem] rounded-sm object-cover'
-        alt=''
-      />
+      <img src={row.getValue('thumbnail') ?? DEFAULT_PP} className='aspect-video h-[4.5rem] w-[8rem] rounded-sm object-cover' alt='' />
     ),
   },
   {
@@ -128,9 +124,7 @@ const columns: ColumnDef<VideoData>[] = [
   {
     accessorKey: 'title',
     header: 'Title',
-    cell: ({ row }) => (
-      <div className='line-clamp-1 max-w-[30ch] break-words font-[450]'>{getReducedString(row.getValue('title'))}</div>
-    ),
+    cell: ({ row }) => <div className='line-clamp-1 max-w-[30ch] break-words font-[450]'>{getReducedString(row.getValue('title'))}</div>,
   },
   {
     accessorKey: 'video_type',
@@ -296,11 +290,7 @@ export default function Videos() {
           <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
-                <TableRow
-                  key={row.id}
-                  data-state={row.getIsSelected() && 'selected'}
-                  className='border-black/5 dark:border-white/5'
-                >
+                <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'} className='border-black/5 dark:border-white/5'>
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
                   ))}
@@ -309,13 +299,7 @@ export default function Videos() {
             ) : (
               <TableRow>
                 <TableCell colSpan={columns.length} className='h-24 text-center'>
-                  {!videos ? (
-                    <Loading text='Loading Videos...' invert='auto' />
-                  ) : videos.length ? (
-                    'No results.'
-                  ) : (
-                    'No video found.'
-                  )}
+                  {!videos ? <Loading text='Loading Videos...' invert='auto' /> : videos.length ? 'No results.' : 'No video found.'}
                 </TableCell>
               </TableRow>
             )}

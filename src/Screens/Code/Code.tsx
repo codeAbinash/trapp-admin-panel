@@ -83,14 +83,14 @@ function Code() {
     <div className='flex flex-col gap-5 pb-20'>
       <h1 className='text-3xl font-bold'>Implementation of Merge Sort Algorithm</h1>
       <p>
-        Merge sort is a powerful sorting algorithm known for its efficiency. It follows a "divide and conquer" approach,
-        breaking the array into smaller halves until each sub-array is sorted. The merging step combines two sorted
-        arrays, resulting in a fully sorted array. With a consistent O(n log n) time complexity.
+        Merge sort is a powerful sorting algorithm known for its efficiency. It follows a "divide and conquer" approach, breaking the array into
+        smaller halves until each sub-array is sorted. The merging step combines two sorted arrays, resulting in a fully sorted array. With a
+        consistent O(n log n) time complexity.
       </p>
       <p>
-        Here, we have a function <PartCode>merge_sort</PartCode> that takes an array, the starting index, and the ending
-        index as arguments. The function recursively calls itself to divide the array into smaller halves until the size
-        of the array is 1. Then, the <PartCode>merge</PartCode> function is called to merge the two halves.
+        Here, we have a function <PartCode>merge_sort</PartCode> that takes an array, the starting index, and the ending index as arguments. The
+        function recursively calls itself to divide the array into smaller halves until the size of the array is 1. Then, the{' '}
+        <PartCode>merge</PartCode> function is called to merge the two halves.
       </p>
 
       <div className='bg-gray-950/3'>
@@ -105,9 +105,7 @@ function Code() {
 }
 
 function PartCode({ children }: { children: React.ReactNode }) {
-  return (
-    <span className='rounded-sm bg-black/10 px-2 py-0.5 font-mono text-sm font-bold dark:bg-white/10'>{children}</span>
-  )
+  return <span className='rounded-sm bg-black/10 px-2 py-0.5 font-mono text-sm font-bold dark:bg-white/10'>{children}</span>
 }
 
 export default Code

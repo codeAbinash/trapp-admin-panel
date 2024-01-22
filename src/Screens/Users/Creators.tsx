@@ -29,14 +29,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { DEFAULT_PP } from '@/constants'
 
 import { Loading } from '@/components/Loading'
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog'
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Textarea } from '@/components/ui/textarea'
 import { usePopupAlertContext } from '@/context/PopupAlertContext'
 import API, { ban_creator_f, delete_creator_f, get_creators_f, unban_creator_f } from '@/lib/api'
@@ -160,11 +153,7 @@ export default function Creators() {
           <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
-                <TableRow
-                  key={row.id}
-                  data-state={row.getIsSelected() && 'selected'}
-                  className='border-black/5 dark:border-white/5'
-                >
+                <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'} className='border-black/5 dark:border-white/5'>
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
                   ))}
@@ -173,13 +162,7 @@ export default function Creators() {
             ) : (
               <TableRow>
                 <TableCell colSpan={columns.length} className='h-24 text-center'>
-                  {!users ? (
-                    <Loading text='Loading Users...' invert='auto' />
-                  ) : users.length ? (
-                    'No results.'
-                  ) : (
-                    'No users found.'
-                  )}
+                  {!users ? <Loading text='Loading Users...' invert='auto' /> : users.length ? 'No results.' : 'No users found.'}
                 </TableCell>
               </TableRow>
             )}
@@ -221,11 +204,7 @@ const columns: ColumnDef<Creator>[] = [
   {
     accessorKey: 'email',
     header: 'Email',
-    cell: ({ row }) => (
-      <div className='font-[450]'>
-        {row.getValue('email') || <span className='font-normal opacity-30'>Not Provided</span>}
-      </div>
-    ),
+    cell: ({ row }) => <div className='font-[450]'>{row.getValue('email') || <span className='font-normal opacity-30'>Not Provided</span>}</div>,
   },
   {
     accessorKey: 'status',
@@ -313,15 +292,7 @@ const columns: ColumnDef<Creator>[] = [
     },
   },
 ]
-function DeleteCreator({
-  open,
-  setOpen,
-  id,
-}: {
-  open: boolean
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>
-  id: number
-}) {
+function DeleteCreator({ open, setOpen, id }: { open: boolean; setOpen: React.Dispatch<React.SetStateAction<boolean>>; id: number }) {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const { newPopup } = usePopupAlertContext()
   async function banUser() {
@@ -342,8 +313,7 @@ function DeleteCreator({
         <DialogHeader>
           <DialogTitle>Delete this Creator?</DialogTitle>
           <DialogDescription>
-            Are you sure you want to delete this creator(User Id <span className='font-[500]'>{id}</span>)? This action
-            cannot be undone.
+            Are you sure you want to delete this creator(User Id <span className='font-[500]'>{id}</span>)? This action cannot be undone.
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
@@ -366,15 +336,7 @@ function DeleteCreator({
     </Dialog>
   )
 }
-function UnBanCreator({
-  open,
-  setOpen,
-  id,
-}: {
-  open: boolean
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>
-  id: number
-}) {
+function UnBanCreator({ open, setOpen, id }: { open: boolean; setOpen: React.Dispatch<React.SetStateAction<boolean>>; id: number }) {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const { newPopup } = usePopupAlertContext()
   async function unbanUser() {
@@ -395,8 +357,7 @@ function UnBanCreator({
         <DialogHeader>
           <DialogTitle>Unban this Creator?</DialogTitle>
           <DialogDescription>
-            Are you sure you want to unban this creator(User Id <span className='font-[500]'>{id}</span>)? The user will
-            be able to login again.
+            Are you sure you want to unban this creator(User Id <span className='font-[500]'>{id}</span>)? The user will be able to login again.
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
@@ -420,15 +381,7 @@ function UnBanCreator({
   )
 }
 
-function BanCreator({
-  open,
-  setOpen,
-  id,
-}: {
-  open: boolean
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>
-  id: number
-}) {
+function BanCreator({ open, setOpen, id }: { open: boolean; setOpen: React.Dispatch<React.SetStateAction<boolean>>; id: number }) {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [reason, setReason] = useState<string>('')
   const { newPopup } = usePopupAlertContext()
@@ -449,8 +402,7 @@ function BanCreator({
         <DialogHeader>
           <DialogTitle>Ban this Creator?</DialogTitle>
           <DialogDescription>
-            Are you sure you want to ban this creator(Id <span className='font-[500]'>{id}</span>)? If yes please
-            provide a reason for the ban.
+            Are you sure you want to ban this creator(Id <span className='font-[500]'>{id}</span>)? If yes please provide a reason for the ban.
           </DialogDescription>
         </DialogHeader>
         <Textarea
