@@ -1,4 +1,3 @@
-import exp from 'constants'
 import { app } from '../constants'
 import ls from './ls'
 
@@ -103,10 +102,60 @@ const API = {
     list: `${API_URL}/sticker/list`,
     delete: `${API_URL}/sticker/delete`,
   },
+  wallet: {
+    fetch: `${API_URL}/wallet/fetch`,
+    create: `${API_URL}/wallet/create`,
+    delete: `${API_URL}/wallet/delete`,
+  },
 }
 export default API
 
 // All API calls
+
+export async function delete_price_f(coin_bundle_id: number): Promise<apiResponse> {
+  try {
+    const headers = authorizedHeader(defaultHeaders)
+    const body = { coin_bundle_id }
+    console.log(body)
+    const res = await fetch(API.wallet.delete, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(body),
+    })
+    return await returnResponse(res)
+  } catch (err) {
+    return catchError(err)
+  }
+}
+
+export async function create_price_f(total_coins: number, price: number) {
+  try {
+    const headers = authorizedHeader(defaultHeaders)
+    const body = { total_coins, price }
+    console.log(body)
+    const res = await fetch(API.wallet.create, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(body),
+    })
+    return await returnResponse(res)
+  } catch (err) {
+    return catchError(err)
+  }
+}
+
+export async function fetch_prices_f(): Promise<apiResponse> {
+  try {
+    const headers = authorizedHeader(defaultHeaders)
+    const res = await fetch(API.wallet.fetch, {
+      method: 'POST',
+      headers,
+    })
+    return await returnResponse(res)
+  } catch (err) {
+    return catchError(err)
+  }
+}
 
 export async function get_stickers_f(): Promise<apiResponse> {
   try {

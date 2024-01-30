@@ -1,7 +1,7 @@
-import { type ClassValue, clsx } from 'clsx'
+import { clsx, type ClassValue } from 'clsx'
 import { twMerge } from 'tailwind-merge'
-import { userMessage } from './types'
 import { MB } from './constants'
+import { userMessage } from './types'
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -75,4 +75,9 @@ export function picFileValidation(file: File | undefined | null, size: number = 
       error: true,
     }
   return { message: '', error: false }
+}
+
+export function nFormatter(num: number) {
+  let formatter = Intl.NumberFormat('en', { notation: 'compact' })
+  return formatter.format(num)
 }

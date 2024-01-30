@@ -3,10 +3,10 @@ import { Loading } from '@/components/Loading'
 import TapMotion from '@/components/TapMotion'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { NewPopupFn, PopupAlertType, usePopupAlertContext } from '@/context/PopupAlertContext'
+import { NewPopupFn, SetPopupsFn, usePopupAlertContext } from '@/context/PopupAlertContext'
 import { create_sticker_f, delete_sticker_f, get_stickers_f } from '@/lib/api'
 import { KB } from '@/lib/constants'
-import { picFileValidation } from '@/lib/utils'
+import { nFormatter, picFileValidation } from '@/lib/utils'
 import { ImagePlusIcon, Trash2 } from 'lucide-react'
 import { useCallback, useEffect, useRef, useState } from 'react'
 
@@ -63,7 +63,7 @@ function Stickers() {
           <img src={sticker.sticker_src} alt='' className='h-36 w-36 object-contain' />
           <div className='flex items-center justify-center gap-3 text-lg font-semibold'>
             <Coin />
-            {sticker.price}
+            {nFormatter(sticker.price)}
           </div>
         </div>
       ))}
@@ -75,7 +75,7 @@ function createSticker(
   f: FileList | null,
   pic: React.RefObject<HTMLInputElement>,
   newPopup: NewPopupFn,
-  setPopups: React.Dispatch<React.SetStateAction<PopupAlertType[]>>,
+  setPopups: SetPopupsFn,
   loadStickers: () => Promise<void>,
 ) {
   newPopup({
@@ -95,7 +95,7 @@ function NewStickerPopupUI({
   f: FileList | null
   pic: React.RefObject<HTMLInputElement>
   newPopup: NewPopupFn
-  setPopups: React.Dispatch<React.SetStateAction<PopupAlertType[]>>
+  setPopups: SetPopupsFn
   loadStickers: () => Promise<void>
 }) {
   const [isLoading, setIsLoading] = useState(false)
@@ -126,13 +126,7 @@ function NewStickerPopupUI({
         {isLoading && <Loading />}
         {isLoading ? 'Creating Sticker' : 'Create Sticker'}
       </Button>
-      <Button
-        onClick={() => {
-          setPopups([])
-        }}
-      >
-        Cancel
-      </Button>
+      <Button onClick={() => setPopups([])}>Cancel</Button>
     </div>
   )
 }
@@ -202,7 +196,7 @@ async function deleteSticker(id: number, newPopup: NewPopupFn, loadStickers: () 
   })
 }
 
-function StickerSkeleton() {
+export function StickerSkeleton() {
   return (
     <div className='flex flex-col items-center justify-center gap-4 rounded-md px-4'>
       <div className='halka-bg h-36 w-36 animate-pulse rounded-2xl' />

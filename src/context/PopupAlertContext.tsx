@@ -9,6 +9,7 @@ export type PopupAlertType = {
 }
 
 export type NewPopupFn = (popup: PopupAlertType) => void
+export type SetPopupsFn = React.Dispatch<React.SetStateAction<PopupAlertType[]>>
 
 type ActionType = {
   text: string | JSX.Element
@@ -19,7 +20,7 @@ type ActionType = {
 type Popups = {
   popups: PopupAlertType[]
   newPopup: NewPopupFn
-  setPopups: React.Dispatch<React.SetStateAction<PopupAlertType[]>>
+  setPopups: SetPopupsFn
 }
 
 // Create a context

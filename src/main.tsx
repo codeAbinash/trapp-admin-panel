@@ -21,6 +21,7 @@ import Users from './Screens/Users/Users.tsx'
 import Videos from './Screens/Videos/Videos.tsx'
 import PopupAlert from './components/PopupAlert.tsx'
 import { PopupAlertContextProvider } from './context/PopupAlertContext.tsx'
+import PriceManagement from './Screens/PriceManagement/PriceManagement.tsx'
 
 const router = createBrowserRouter([
   {
@@ -57,7 +58,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/price_management',
-        element: <div>Price Management</div>,
+        element: <PriceManagement />,
       },
       {
         path: '/creator_withdraw',
