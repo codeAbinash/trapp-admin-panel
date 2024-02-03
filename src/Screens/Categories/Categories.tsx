@@ -22,6 +22,7 @@ export default function Categories() {
   const [categories, setCategories] = useState<Category[] | null>(null)
 
   async function loadAllCategories() {
+    setCategories(null)
     const res = await get_categories_f()
     if (res.status) setCategories(res.data.data)
   }
@@ -48,7 +49,7 @@ export default function Categories() {
           </>
         ) : null}
 
-        {categories?.map((category) => <Category key={category.id} category={category} />)}
+        {categories?.map((category) => <Category key={category.id} category={category} loadAllCategories={loadAllCategories} />)}
       </div>
     </div>
   )
@@ -138,7 +139,7 @@ function AddNewCategory({ loadAllCategories }: { loadAllCategories: () => Promis
   )
 }
 
-async function deleteCategory(category: Category, newPopup: (popup: PopupAlertType) => void) {
+async function deleteCategory(category: Category, newPopup: (popup: PopupAlertType) => void, loadAllCategories: () => Promise<void>) {
   transitions(() =>
     newPopup({
       title: 'Delete Category',
@@ -165,11 +166,13 @@ async function deleteCategory(category: Category, newPopup: (popup: PopupAlertTy
                   title: 'Category Deleted',
                   subTitle: 'Your category has been deleted successfully',
                 })
+                loadAllCategories()
               } else {
                 newPopup({
                   title: 'Error',
                   subTitle: 'Something went wrong while deleting your category',
                 })
+                loadAllCategories()
               }
             }, 100)
           },
@@ -180,7 +183,7 @@ async function deleteCategory(category: Category, newPopup: (popup: PopupAlertTy
   )()
 }
 
-function Category({ category }: { category: Category }) {
+function Category({ category, loadAllCategories }: { category: Category; loadAllCategories: () => Promise<void> }) {
   const [edit, setEdit] = useState(false)
   const [title, setTitle] = useState(category.title)
   const [isLoading, setIsLoading] = useState(false)
@@ -227,7 +230,11 @@ function Category({ category }: { category: Category }) {
                 <PencilIcon className='h-4 w-4' />
               </TapMotion>
 
-              <TapMotion size='md' className='tap99 rounded-full bg-red-500/20 p-2.5 text-red-500' onClick={() => deleteCategory(category, newPopup)}>
+              <TapMotion
+                size='md'
+                className='tap99 rounded-full bg-red-500/20 p-2.5 text-red-500'
+                onClick={() => deleteCategory(category, newPopup, loadAllCategories)}
+              >
                 <Trash2Icon className='h-4 w-4' />
               </TapMotion>
             </>
