@@ -46,13 +46,13 @@ export function getStatusColor(status: string) {
   }
 }
 
-export function getSubscriptionColor(subscription: 'expired' | 'active' | 'trial' | 'regular') {
+export function getSubscriptionColor(subscription: 'expired' | 'active' | 'hold' | 'regular') {
   switch (subscription) {
     case 'expired':
       return 'bg-gray-500'
     case 'active':
       return 'bg-green-500'
-    case 'trial':
+    case 'hold':
       return 'bg-yellow-500'
     case 'regular':
       return 'bg-black/20 dark:bg-white/25'

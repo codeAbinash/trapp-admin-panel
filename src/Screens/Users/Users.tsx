@@ -305,6 +305,10 @@ type ServerResponse = {
   profile_pic: string
   created_at: string
   updated_at: string
+  subscription: {
+    user_id: string
+    status: 'active' | 'expired' | 'hold' | 'regular'
+  } | null
   user_blocked: {
     id: number
     user_id: string
@@ -327,6 +331,7 @@ function generateOrganizedData(data: ServerResponse[]) {
     }
     obj.status = user.user_blocked ? 'banned' : 'regular'
     obj.phone = user.country_code + ' ' + user.phone
+    obj.subscription = user.subscription?.status || 'regular'
     return obj
   })
   return organizedData
