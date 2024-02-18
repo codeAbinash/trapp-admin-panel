@@ -76,10 +76,10 @@ const router = createBrowserRouter([
         path: '/categories',
         element: <Categories />,
       },
-      {
-        path: '/code',
-        element: <Code />,
-      },
+      // {
+      //   path: '/code',
+      //   element: <Code />,
+      // },
     ],
   },
   {

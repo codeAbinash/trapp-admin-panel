@@ -119,7 +119,7 @@ function Options({ path, navigate }: { path: string; navigate: NavigateFunction 
       <OptionItem navigate={navigate} path='/sticker_management' currentPath={path} name='Sticker Management' SideIcon={StickerIcon} />
       <OptionItem navigate={navigate} path='/price_management' currentPath={path} name='Price Management' SideIcon={Gem} />
       <OptionItem navigate={navigate} path='/creator_withdraw' currentPath={path} name='Creator Withdraw' SideIcon={BadgePercent} />
-      <OptionItem navigate={navigate} path='/code' currentPath={path} name='Code' SideIcon={Code} />
+      {/* <OptionItem navigate={navigate} path='/code' currentPath={path} name='Code' SideIcon={Code} /> */}
     </div>
   )
 }
