@@ -156,7 +156,7 @@ function CreateSticker({ loadStickers }: { loadStickers: () => Promise<void> }) 
       >
         <ImagePlusIcon className='h-7 w-7 rounded-lg opacity-80' />
       </TapMotion>
-      <input type='file' className='hidden' ref={pic} onChange={onChangeFileSelect} accept='image/png, image/jpeg, image/jpg' />
+      <input type='file' className='hidden' ref={pic} onChange={onChangeFileSelect} accept='image/png, image/jpeg, image/jpg, image/gif' />
       <p>New Sticker</p>
     </div>
   )
