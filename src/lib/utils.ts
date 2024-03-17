@@ -62,7 +62,7 @@ export function getSubscriptionColor(subscription: 'expired' | 'active' | 'hold'
 }
 
 export function picFileValidation(file: File | undefined | null, size: number = 1 * MB, sizeInText = '1MB'): userMessage {
-  const allowedTypes = ['image/png', 'image/jpeg', 'image/jpg']
+  const allowedTypes = ['image/png', 'image/jpeg', 'image/jpg', 'image/gif']
   const maxSize = size
   if (file && !allowedTypes.includes(file.type))
     return {
@@ -78,6 +78,6 @@ export function picFileValidation(file: File | undefined | null, size: number = 
 }
 
 export function nFormatter(num: number) {
-  let formatter = Intl.NumberFormat('en', { notation: 'compact' })
+  const formatter = Intl.NumberFormat('en', { notation: 'compact' })
   return formatter.format(num)
 }
