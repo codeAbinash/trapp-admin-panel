@@ -6,9 +6,9 @@ export const app = {
   name: '0.1.0-alpha',
   code: '1',
   ipInoKey: 'ba18ace04b21f6', // 50k requests per month
-  URL: 'https://trappmartialarts.com/',
-  backendURL: 'https://trappmartialarts.com/',
-  api: 'https://trappmartialarts.com/admin',
+  URL: 'https://system.trappmartialarts.com/',
+  backendURL: 'https://system.trappmartialarts.com/',
+  api: 'https://system.trappmartialarts.com/api/admin/',
   secret: 'hellothisisocdexindia',
 }
 
