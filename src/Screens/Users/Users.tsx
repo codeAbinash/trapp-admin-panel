@@ -237,6 +237,7 @@ const columns: ColumnDef<User>[] = [
   },
   {
     id: 'actions',
+    header: 'Action',
     enableHiding: false,
     cell: ({ row }) => {
       const [deletePopup, setDeletePopup] = useState(false)

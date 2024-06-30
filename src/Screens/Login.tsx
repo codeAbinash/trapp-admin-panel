@@ -5,36 +5,35 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { usePopupAlertContext } from '@/context/PopupAlertContext'
 import { login_f } from '@/lib/api'
 import ls from '@/lib/ls'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-export function TabsDemo() {
-  return (
-    <Tabs defaultValue='admin' className='-mt-20 w-[95%] max-w-[450px]'>
-      <TabsList className='grid w-full grid-cols-2'>
-        <div
-          className='flex w-full cursor-pointer items-center justify-center text-sm'
-          onClick={() => {
-            window.location.href = import.meta.env.VITE_CREATOR_PANEL_URL
-          }}
-        >
-          Creator
-        </div>
-        <TabsTrigger value='admin'>Admin</TabsTrigger>
-      </TabsList>
-      <TabsContent value='creator'>
-        <Creator />
-      </TabsContent>
-      <TabsContent value='admin'>
-        <Admin />
-      </TabsContent>
-    </Tabs>
-  )
-}
+// export function TabsDemo() {
+//   return (
+//     <Tabs defaultValue='admin' className='-mt-20 w-[95%] max-w-[450px]'>
+//       <TabsList className='grid w-full grid-cols-2'>
+//         <div
+//           className='flex w-full cursor-pointer items-center justify-center text-sm'
+//           onClick={() => {
+//             window.location.href = import.meta.env.VITE_CREATOR_PANEL_URL
+//           }}
+//         >
+//           Creator
+//         </div>
+//         <TabsTrigger value='admin'>Admin</TabsTrigger>
+//       </TabsList>
+//       <TabsContent value='creator'>
+//         <Creator />
+//       </TabsContent>
+//       <TabsContent value='admin'>
+//         <Admin />
+//       </TabsContent>
+//     </Tabs>
+//   )
+// }
 
 function Header() {
   return (
@@ -119,7 +118,7 @@ function Admin() {
 
   return (
     <>
-      <Card>
+      <Card className='w-[95%] max-w-[450px]'>
         <CardHeader>
           <CardTitle className='text-2xl'>
             <span className='font-semibold'>
@@ -180,7 +179,8 @@ export default function Login() {
       <Header />
       <div className='flex min-h-[100dvh] flex-col items-center justify-center gap-5 bg-gradient-to-tr from-red-100 to-blue-100 pt-20 dark:from-red-950/40 dark:to-blue-950/40'>
         {/* <img src="AppIcons/full.svg" className="w-44 -mt-16" /> */}
-        <TabsDemo />
+        {/* <TabsDemo /> */}
+        <Admin />
       </div>
     </>
   )

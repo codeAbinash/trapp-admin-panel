@@ -153,6 +153,7 @@ const columns: ColumnDef<VideoData>[] = [
   },
   {
     id: 'actions',
+    header: 'Action',
     enableHiding: false,
     cell: ({ row }) => {
       const { newPopup } = usePopupAlertContext()

@@ -138,7 +138,7 @@ function CreateSticker({ loadStickers }: { loadStickers: () => Promise<void> }) 
 
   const onChangeFileSelect = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const fileInput = e.target.files
-    const ppValidation = picFileValidation(pic.current!.files![0], 200 * KB, '100KB')
+    const ppValidation = picFileValidation(pic.current!.files![0], 200 * KB, '200KB')
     if (ppValidation.error) {
       newPopup({ title: 'Invalid File', subTitle: ppValidation.message })
       pic.current!.value = ''

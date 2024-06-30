@@ -235,6 +235,7 @@ const columns: ColumnDef<Creator>[] = [
   {
     id: 'actions',
     enableHiding: false,
+    header: 'Action',
     cell: ({ row }) => {
       const [deletePopup, setDeletePopup] = useState(false)
       const [banPopup, setBanPopup] = useState(false)
