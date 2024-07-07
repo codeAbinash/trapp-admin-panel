@@ -107,7 +107,21 @@ export interface VideoData {
   updated_at: string
   details: JSX.Element
   channel_name: string
+  cat_id: string
+  views: number
+  live_api_data: null
+  playlist_id: null
+  video_duration: string
+  like_count: string
+  dislike_count: string
+  creator: Creator
 }
+
+export interface Creator {
+  id: number
+  channel_name: string
+}
+
 const columns: ColumnDef<VideoData>[] = [
   {
     accessorKey: 'thumbnail',
@@ -314,26 +328,7 @@ export default function Videos() {
   )
 }
 
-export interface ServerResponse {
-  id: number
-  creator_id: string
-  title: string
-  description: null
-  privacy: string
-  thumbnail: string
-  video_loc: string
-  video_type: string
-  created_at: string
-  updated_at: string
-  views: number
-  likes: number
-  dislikes: number
-  creator: {
-    channel_name: string
-  }
-}
-
-function generateOrganizedData(data: ServerResponse[]) {
+function generateOrganizedData(data: VideoData[]) {
   const organizedData: VideoData[] = data.map((user) => {
     const obj: VideoData = {
       id: user.id,
@@ -347,18 +342,26 @@ function generateOrganizedData(data: ServerResponse[]) {
       created_at: user.created_at,
       updated_at: user.updated_at,
       channel_name: user.creator.channel_name,
+      cat_id: user.cat_id,
+      views: user.views,
+      live_api_data: null,
+      video_duration: '00:00:00',
+      like_count: user.like_count,
+      dislike_count: user.dislike_count,
+      playlist_id: null,
+      creator: user.creator,
       details: (
         <div className='flex gap-5'>
           <div className='flex flex-col items-center justify-center'>
-            {user.views || '12K'}
+            {user.views}
             <EyeIcon size={15} />
           </div>
           <div className='flex flex-col items-center justify-center'>
-            {user.likes || '8K'}
+            {user.like_count}
             <ThumbsUp size={15} />
           </div>
           <div className='flex flex-col items-center justify-center'>
-            {user.dislikes || '324'}
+            {user.dislike_count}
             <ThumbsDown size={15} />
           </div>
         </div>
